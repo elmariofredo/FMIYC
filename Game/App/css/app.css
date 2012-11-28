@@ -1,0 +1,11 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #000;
+  background-image: url('/Graphic_components/Previews/playground_test2_00001_cropped.png');*/
+  background-position: center 0;
+}
+
+#PlayGround {
+  background: #fff;
+}
