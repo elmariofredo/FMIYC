@@ -34,3 +34,13 @@ function getHeight() {
     return document.body.clientHeight;
   }
 }
+
+/**
+ * Get Height to keep proportions
+ * @param  {[type]} pWidth  [description]
+ * @param  {[type]} pHeight [description]
+ * @return {[type]}         [description]
+ */
+var getPropotionalHegiht = function(pWidth, pHeight) {
+  return pHeight*(getHeight()/pWidth)
+}
