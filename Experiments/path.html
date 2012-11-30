@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.0 (Mac) -->
+<!-- By Mike Swanson (http://blogs.msdn.com/mswanson/)        -->
+<!-- and MIX Online  (http://visitmix.com/)                   -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>path</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      draw(ctx);
+    }
+
+    function draw(ctx) {
+
+      // layer1/Group
+      ctx.save();
+
+      // layer1/Group/Clipping Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(0.0, 0.0);
+      ctx.lineTo(1024.0, 0.0);
+      ctx.lineTo(1024.0, 169.0);
+      ctx.lineTo(0.0, 169.0);
+      ctx.lineTo(0.0, 0.0);
+      ctx.closePath();
+      ctx.clip();
+
+      // layer1/Group/Path
+      ctx.beginPath();
+      ctx.moveTo(0.0, 140.0);
+      ctx.lineTo(392.2, 140.0);
+      ctx.bezierCurveTo(424.2, 140.0, 528.2, 29.0, 552.2, 29.0);
+      ctx.lineTo(1024.0, 29.0);
+      ctx.lineWidth = 58.0;
+      ctx.strokeStyle = "rgb(180, 44, 58)";
+      ctx.stroke();
+      ctx.restore();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1024" height="169"></canvas>
+ </body>
+</html>

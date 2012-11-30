@@ -5,13 +5,43 @@
  */
 var Game =  new Game({
 
-  images: {
-    background: {
-      src: './App/img/gradient.png'
-    }
-  },
+  // images: {
+  //   background: {
+  //     src: './App/img/gradient.png'
+  //   }
+  // },
 
   elements: {
+
+    background: {
+      type: 'code',
+      path: [
+        {top: 0, left: 0},
+        {bottom: 0, right: 0}
+      ],
+      load: function (my) {
+
+        var shape = new createjs.Graphics();
+        shape.beginLinearGradientFill(
+          ["rgba(85, 139, 155, 1)", "rgba(87, 151, 145, 1)", "rgba(88, 163, 135, 1)"],
+          [0, .5, 1],
+          0,
+          0,
+          0,
+          my.dimensions.board.size.height-10
+        );
+        shape.drawRoundRect(
+          my.dimensions.board.corners.top_left.left,
+          my.dimensions.board.corners.top_left.top+5,
+          my.dimensions.board.size.width,
+          my.dimensions.board.size.height-10,
+          0
+        );
+
+        return new createjs.Shape(shape);
+
+      }
+    },
 
     top_border: {
       type: 'lineTo',
@@ -34,26 +64,23 @@ var Game =  new Game({
       ]
     },
 
-    background: {
-      type: 'code',
-      load: function (game) {
-        game.CanvasAssests.place('back', 'gradient', game)        
-      }
-    }
+    // background: {
+    //   type: 'code',
+    //   load: function (game) {
+    //     game.CanvasAssests.place('back', 'gradient', game)
+    //   }
+    // }
   },
 
 
 
   playGround: {
-    // dimesions: {
-    //   width: getWidth(),
-    //   height: getPropotionalHeight(1024, 768)
-    // },
     target_box: document.getElementById('target_box')
   },
 
 
   warriorsWay: {
+    relative_to: 'board',
     start: {
       position:{
         top: 237,

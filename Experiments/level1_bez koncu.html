@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.0 (Mac) -->
+<!-- By Mike Swanson (http://blogs.msdn.com/mswanson/)        -->
+<!-- and MIX Online  (http://visitmix.com/)                   -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>level1_bez koncu</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      draw(ctx);
+    }
+
+    function draw(ctx) {
+
+      // layer1/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(23.1, 138.1);
+      ctx.lineTo(219.1, 138.1);
+      ctx.bezierCurveTo(245.4, 138.1, 358.7, 29.0, 378.4, 29.0);
+      ctx.lineTo(505.1, 29.0);
+      ctx.lineTo(587.7, 29.0);
+      ctx.lineTo(682.4, 29.0);
+      ctx.bezierCurveTo(702.1, 29.0, 815.4, 138.1, 841.7, 138.1);
+      ctx.lineTo(1037.7, 138.1);
+      ctx.lineWidth = 58.0;
+      ctx.strokeStyle = "rgb(180, 44, 58)";
+      ctx.stroke();
+
+      // layer1/Path
+      ctx.beginPath();
+      ctx.moveTo(23.1, 138.1);
+      ctx.lineTo(219.1, 138.1);
+      ctx.bezierCurveTo(245.4, 138.1, 358.7, 247.2, 378.4, 247.2);
+      ctx.lineTo(608.4, 247.2);
+      ctx.lineTo(767.8, 247.2);
+      ctx.lineTo(872.7, 247.2);
+      ctx.bezierCurveTo(892.4, 247.2, 1005.7, 138.1, 1032.0, 138.1);
+      ctx.lineTo(1228.0, 138.1);
+      ctx.stroke();
+
+      // layer1/Path
+      ctx.beginPath();
+      ctx.moveTo(0.0, 138.1);
+      ctx.lineTo(900.1, 138.1);
+      ctx.stroke();
+
+      // layer1/Path
+      ctx.beginPath();
+      ctx.moveTo(1251.1, 138.1);
+      ctx.lineTo(351.0, 138.1);
+      ctx.stroke();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1252" height="277"></canvas>
+ </body>
+</html>

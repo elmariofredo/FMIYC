@@ -72,12 +72,13 @@
 
       $.each( ['start', 'end'], function ( index, type ) {
 
+        // Set Relative Postion to selected element
+        my.options[type].position = my.options.game.getRelativePosition(my.options.relative_to, my.options[type].position); 
+
         my.base_elements[type] = {}
         my.base_elements[type]['options'] = my.options[type];
         my.base_elements[type]['sprite'] = new createjs.SpriteSheet(my.options[type].sprite);
         my.base_elements[type]['sequence'] = new createjs.BitmapAnimation(my.base_elements[type]['sprite']);
-
-        // console.info(my.base_elements[type]['sequence'].gotoAndStop, my.options[type].sprite)
 
         // Open first frame
         my.base_elements[type]['sequence'].gotoAndStop(1);

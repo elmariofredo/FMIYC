@@ -34,7 +34,10 @@
 // > ENTER ASSETS HERE
 
 
-      gradient: function (ctx) {
+      gradient: function (ctx, game) {
+
+        left_top_position = game.getRelativePosition(false, {top: 0, left: 0});
+        left_bottom_position = game.getRelativePosition(false, {bottom: 0, left: 0});
 
         var gradient;
 
@@ -51,6 +54,7 @@
         gradient.addColorStop(0.00, "rgb(85, 139, 155)");
         gradient.addColorStop(0.50, "rgb(87, 151, 145)");
         gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+        gradient.x = 500
         ctx.fillStyle = gradient;
         ctx.fill();
         ctx.restore();

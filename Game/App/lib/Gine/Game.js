@@ -30,6 +30,12 @@
         offset: {
           top: 0,
           left: 0
+        },
+        corners: {
+          top_left: {},
+          top_right: {},
+          bottom_left: {},
+          bottom_right: {}
         }
       }
     },
@@ -87,8 +93,25 @@
         ( my.dimensions.display.size.height - my.dimensions.board.size.height ) / 2
       );
 
+      my.dimensions.board.corners = my.getElementCornerPosition('board')
     },
 
+    /**
+     * Define Element Corner Positions
+     * @param  {String} element Element Name
+     * @return {Hash}           Coordinates for each corner
+     */
+    getElementCornerPosition: function ( element ) {
+      var my = this;
+
+      return {
+        top_left: my.getRelativePosition(element, {top: 0, left: 0}),
+        top_right: my.getRelativePosition(element, {top: 0, right: 0}),
+        bottom_left: my.getRelativePosition(element, {bottom: 0, left: 0}),
+        bottom_right: my.getRelativePosition(element, {bottom: 0, right: 0})
+      }
+
+    },
     
     /**
      *  Apply offset to the position for specified element
@@ -98,7 +121,7 @@
      */
     getRelativePosition: function (element, position) {
       var my = this;
-      if ( element === undefined ) { element = my.options.default_view }
+      if ( element === undefined || !element ) { element = my.options.default_view }
 
       // Add Bottom Coordinates Support
       if ( position['bottom'] !== undefined )
@@ -144,13 +167,15 @@
 
       my.buildPlayground();
 
-      // my.buildWarriorsWay();
 
-      // my.buildCharacters();
-
-      // my.attachControllers();
 
       my.buildElements();
+
+      my.buildWarriorsWay();
+
+      my.buildCharacters();
+
+      my.attachControllers();
 
     },
 
@@ -165,8 +190,12 @@
       my.playGroundStage = new PlayGround( my.options.playGround );
       my.playGround = my.playGroundStage.stage;
 
-      my.pureCanvasBack = document.getElementById("canvas_back").getContext("2d");
-      my.pureCanvasFront = document.getElementById("canvas_front").getContext("2d");
+      my.pureCanvasBackElement = document.getElementById("canvas_back")
+      my.pureCanvasBack = my.pureCanvasBackElement.getContext("2d");
+      my.pureCanvasFrontElement = document.getElementById("canvas_front")
+      my.pureCanvasFront = my.pureCanvasFrontElement.getContext("2d");
+
+      my.pureCanvasBackElement.height = my.dimensions.display.size.height
 
       my.CanvasAssests = new CanvasAssestsClass();
 
@@ -228,6 +257,7 @@
 
     // Create Game Path
     buildWarriorsWay: function () {
+      this.options.warriorsWay.game = this;
       this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
     },
 

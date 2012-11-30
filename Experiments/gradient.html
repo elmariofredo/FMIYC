@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.0 (Mac) -->
+<!-- By Mike Swanson (http://blogs.msdn.com/mswanson/)        -->
+<!-- and MIX Online  (http://visitmix.com/)                   -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>gradient</title>
+  <script>
+
+    function init() {
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      gradient(ctx);
+    }
+
+    function gradient(ctx) {
+
+      var gradient;
+
+      // gradient/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1.0, 400.0);
+      ctx.lineTo(0.0, 399.9);
+      ctx.lineTo(0.0, 0.0);
+      ctx.lineTo(1.0, 0.1);
+      ctx.lineTo(1.0, 400.0);
+      ctx.closePath();
+      ctx.save();
+      ctx.transform(1.000, 0.000, 0.000, -1.000, -511.5, -0.0);
+      gradient = ctx.createLinearGradient(512.0, -400.0, 512.0, -0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1" height="400"></canvas>
+ </body>
+</html>
