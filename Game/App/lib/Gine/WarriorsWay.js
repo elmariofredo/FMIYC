@@ -124,14 +124,66 @@
       var my = this;
 
       // Get line image
-      var line = my.base_elements['line']['image'];
+      // var line = my.base_elements['line']['image'];
 
-      line.scaleX = my.get_scale_from_distance( line, my.base_elements.start, my.base_elements.end );
+      // line.scaleX = my.get_scale_from_distance( line, my.base_elements.start, my.base_elements.end );
       
-      line.y = 96;
-      line.x = my.base_elements.start.border.right-136
+      // line.y = 96;
+      // line.x = my.base_elements.start.border.right-136
 
-      my.playGround.addChild( line );
+      // my.playGround.addChild( line );
+      
+      // ctx.beginPath();
+      // ctx.moveTo(0.0, 140.0);
+      // ctx.lineTo(1024.0, 140.0);
+      // ctx.lineWidth = 58.0;
+      // ctx.strokeStyle = "rgb(180, 44, 58)";
+      // ctx.stroke();
+      
+
+      var path = null;
+      var from = 'start';
+      var to = 'end';
+
+      // my.options.path.offset = {
+      //   top: ( my.options.path.style.thickness / 2 )
+      // }
+
+      // Define Basic Stroke
+      var stroke = new createjs.Graphics().beginStroke( my.options.path.style.color );
+      // var stroke = new createjs.Graphics().beginStroke( 'rgba(87, 151, 145, 1)' );
+
+      // TODO: Add more style options
+      // Set Style
+      console.info(my.options.path)
+      stroke.setStrokeStyle( my.options.path.style.thickness );
+      // stroke.setStrokeStyle( 10 );
+
+      // Get Start Position
+      // var current_path = element_options.path.shift();
+
+      // Start Position
+      // var position = my.getRelativePosition(element_options.relative_to, current_path);
+      // console.info(position)
+      stroke.moveTo( my.base_elements[from]['placement'].left, my.base_elements[from]['placement'].top + my.options.path.offset.top );
+      // stroke.moveTo( 0, 0 );
+
+      // Go to each path
+      // $.each( element_options.path, function ( index, element_options_path ) {
+        
+      //   var position = my.getRelativePosition(element_options.relative_to, element_options_path);
+      //   stroke.lineTo( position.left, position.top );
+
+      // });
+      
+      stroke.lineTo( my.base_elements[to]['placement'].left, my.base_elements[to]['placement'].top + my.options.path.offset.top );
+      // stroke.lineTo( 0, 500 );
+
+      path = new createjs.Shape( stroke.endStroke() );
+
+      console.info(path)
+
+      my.playGround.addChild(path);
 
       my.playGround.update();      
     }

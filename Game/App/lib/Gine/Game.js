@@ -173,7 +173,7 @@
 
       my.buildWarriorsWay();
 
-      my.buildCharacters();
+      // my.buildCharacters();
 
       my.attachControllers();
 

@@ -64,6 +64,11 @@ var Game =  new Game({
       ]
     },
 
+
+
+
+
+
     // background: {
     //   type: 'code',
     //   load: function (game) {
@@ -109,38 +114,46 @@ var Game =  new Game({
         frames: {width: 269, height: 117}
       } 
     },
-    joins: {
-      sprite: {
-        images: ['./App/img/path.png'],
-        frames: {width: 166, height: 170}
+    path: {
+      style: {
+        color: 'rgba(180, 44, 58, 1)',
+        thickness: 58
       },
-      kinds: {
-        'line': {
-          frame: 0,
-          placement_offset: {
-            top: 0,
-            left: 0
-          },
-          guide: {
-            // TODO
-          }
-        },
-        'up': {
-          frame: 1,
-          placement_offset: {
-            top: 0,
-            left: 0
-          }
-        },
-        'down': {
-          frame: 2,
-          placement_offset: {
-            top: 0,
-            left: 0
-          }
-        },
-      }
-    }
+    },
+
+
+    // joins: {
+    //   sprite: {
+    //     images: ['./App/img/path.png'],
+    //     frames: {width: 166, height: 170}
+    //   },
+    //   kinds: {
+    //     'line': {
+    //       frame: 0,
+    //       placement_offset: {
+    //         top: 0,
+    //         left: 0
+    //       },
+    //       guide: {
+    //         // TODO
+    //       }
+    //     },
+    //     'up': {
+    //       frame: 1,
+    //       placement_offset: {
+    //         top: 0,
+    //         left: 0
+    //       }
+    //     },
+    //     'down': {
+    //       frame: 2,
+    //       placement_offset: {
+    //         top: 0,
+    //         left: 0
+    //       }
+    //     },
+    //   }
+    // }
   },
 
 
