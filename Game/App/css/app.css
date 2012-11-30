@@ -1,6 +1,6 @@
-/** {cursor: none;}*/
+* {cursor: none;border: none;}
 
-body, html {height: 100%;}
+body, html {height: 100%;width: 100%;overflow: hidden;}
 
 body {
   padding: 0;
@@ -9,8 +9,8 @@ body {
   font-size: 1px;
 }
 
-#PlayGround {
-  /*background-image: url('/Graphic_components/Previews/playground_test2_00001_cropped.png');*/
+/*#PlayGround {
+  background-image: url('/Graphic_components/Previews/playground_test2_00001_cropped.png');
   background-repeat: no-repeat;
 }
 
@@ -18,11 +18,12 @@ body {
 #main{
   position: absolute;
   top: 50%;
-  margin-top: -250px;/* half of #content height*/
+  margin-top: -250px;
   left: 0;
   width: 100%;
 }
 
 #target_box {
   margin-right: auto;
-}
+  background: #fff;
+}*/

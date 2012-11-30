@@ -8,9 +8,10 @@
  *   Bitmap.js   
  * 
  */
+
 (function (window, undefined) {
 
-  var Character = Class.extend({
+  var Character = GameClass.extend({
     x: 0,
     y: 0,
     step: function () {},
@@ -19,7 +20,7 @@
 
       // Default options
       this.options = {        
-        id: uniq_id(),
+        id: my.unique_id(),
         playGround: playGround,
         name: 'GenericCharacter',
         move: false,
@@ -38,21 +39,24 @@
       }
 
       // Merge options
-      $.extend( this.options, options || {} );
+      $.extend( my.options, options || {} );
 
-      this.playGround = this.options.playGround;
+      my.id = my.options.id;
+      my.name = my.options.name;
+      my.unique_name = my.unique_name();
+      my.playGround = my.options.playGround;
 
       // Create Image Element
-      this.image = new Image();
+      my.image = new Image();
 
       // Set on load Callback
-      this.image.onload = function(){my.onLoadedImage()};
+      my.image.onload = function(){my.onLoadedImage()};
 
       // Create custom move method if defined
-      if ( this.options.step )
-        this.step = this.options.step;
+      if ( my.options.step )
+        my.step = my.options.step;
 
-      this.load();
+      my.load();
     },
 
     // When Character Image is loaded
@@ -95,10 +99,12 @@
       this.image.src = this.options.src;
     },
 
-    set_coordinates: function (postion) {
+    set_coordinates: function (position) {
+      // console.info(this, this.options, position)
+
       // TODO: make it work also for non sprite images
-      this.x = centerImage(postion.left, this.options.sprite.frames.width);
-      this.y = centerImage(postion.top, this.options.sprite.frames.height);
+      this.x = centerImage(position.left, this.options.sprite.frames.width);
+      this.y = centerImage(position.top, this.options.sprite.frames.height);
     },
 
     move: function (position) {

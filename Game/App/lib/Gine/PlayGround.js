@@ -18,9 +18,9 @@
         id: uniq_id(),
         name: 'PlayGround',
         fps: 30,
-        dimesions: {
-          width: getWidth(),
-          height: getHeight()
+        dimensions: {
+          width: null,
+          height: null
         },
         canvas: null,
         target_box: null
@@ -38,30 +38,30 @@
       var my = this;
       
       // Create Canvas if not exists
-      if ( !this.options.canvas ) {
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = this.options.dimesions.width || getWidth();
-        this.canvas.height = this.options.dimesions.height || getHeight();
+      if ( !my.options.canvas ) {
+        my.canvas = document.createElement('canvas');
+        my.canvas.width = my.options.dimensions.width || 0;
+        my.canvas.height = my.options.dimensions.height || 0;
       
       // Use options Canvas
       } else {
-        this.canvas = this.options.canvas;
+        my.canvas = my.options.canvas;
       }
 
       // Ovewrite canvas id
-      this.canvas.id = 'PlayGround';
+      my.canvas.id = 'PlayGround';
 
       // Append to target_box
-      if ( this.options.target_box ) {
-        this.options.target_box.appendChild(this.canvas);
+      if ( my.options.target_box ) {
+        my.options.target_box.appendChild(my.canvas);
 
       // Append to Document
       } else {
-        document.body.appendChild(this.canvas);
+        document.body.appendChild(my.canvas);
       }      
 
       // initializing the stage
-      this.stage = new createjs.Stage(this.canvas);
+      my.stage = new createjs.Stage(my.canvas);
 
       // Create Ticker
       createjs.Ticker.setFPS(30);
