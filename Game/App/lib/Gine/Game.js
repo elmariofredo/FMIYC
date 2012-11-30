@@ -162,7 +162,13 @@
       // Set playground to full screen
       my.options.playGround.dimensions = my.dimensions.display.size;
 
-      my.playGround = ( new PlayGround( my.options.playGround ) ).stage;
+      my.playGroundStage = new PlayGround( my.options.playGround );
+      my.playGround = my.playGroundStage.stage;
+
+      my.pureCanvasBack = document.getElementById("canvas_back").getContext("2d");
+      my.pureCanvasFront = document.getElementById("canvas_front").getContext("2d");
+
+      my.CanvasAssests = new CanvasAssestsClass();
 
       window.playGround = my.playGround;
     },
@@ -173,7 +179,7 @@
 
       $.each( my.options.elements, function ( index, element_options ) {
 
-        var shape;
+        var shape = null;
 
         switch ( element_options.type ) {
           case 'lineTo':
@@ -212,10 +218,10 @@
             break;
         }
 
-        my.playGround.addChild(shape);
-
-        my.playGround.update();
-
+        if ( shape ) {
+          my.playGround.addChild(shape);
+          my.playGround.update();
+        }
       });
 
     },

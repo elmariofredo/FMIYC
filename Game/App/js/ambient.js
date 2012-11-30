@@ -1,3 +1,4 @@
+
 /**
  * Setup Enviroment
  * @type {Game}
@@ -35,27 +36,10 @@ var Game =  new Game({
 
     background: {
       type: 'code',
-      path: [
-        {top: 0, left: 0},
-        {bottom: 0, right: 0}
-      ],
-      load: function (my) {
-        var shape = new createjs.Graphics();
-        shape.beginLinearGradientStroke(
-          ["rgba(255,255,255,1)","rgba(50, 50, 50, 1)"],
-          [0,.4],
-          0,
-          0,70,
-          140
-        );
-        shape.moveTo(5, 25)
-        shape.lineTo(110,25)
-        shape.endStroke();
-
-        return new createjs.Shape(shape);
+      load: function (game) {
+        game.CanvasAssests.place('back', 'gradient', game)        
       }
     }
-
   },
 
 

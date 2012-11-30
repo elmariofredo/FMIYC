@@ -9,21 +9,20 @@ body {
   font-size: 1px;
 }
 
-/*#PlayGround {
-  background-image: url('/Graphic_components/Previews/playground_test2_00001_cropped.png');
-  background-repeat: no-repeat;
-}
-
-
-#main{
+#canvas_back {
   position: absolute;
-  top: 50%;
-  margin-top: -250px;
-  left: 0;
-  width: 100%;
+  left:0;
+  top:0;
 }
 
-#target_box {
-  margin-right: auto;
-  background: #fff;
-}*/
+#PlayGround {
+  position: absolute;
+  left:0;
+  top:0;
+}
+
+#canvas_front {
+  position: absolute;
+  left:0;
+  top:0;
+}

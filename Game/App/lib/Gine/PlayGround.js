@@ -51,14 +51,23 @@
       // Ovewrite canvas id
       my.canvas.id = 'PlayGround';
 
+      my.canvas_back = document.createElement('canvas');
+      my.canvas_back.id = 'canvas_back';
+      my.canvas_front = document.createElement('canvas');
+      my.canvas_front.id = 'canvas_front';
+
       // Append to target_box
       if ( my.options.target_box ) {
-        my.options.target_box.appendChild(my.canvas);
+        var target = my.options.target_box;
 
       // Append to Document
       } else {
-        document.body.appendChild(my.canvas);
-      }      
+        var target = document.body;
+      }
+
+      target.appendChild(my.canvas_back);
+      target.appendChild(my.canvas);
+      target.appendChild(my.canvas_front);
 
       // initializing the stage
       my.stage = new createjs.Stage(my.canvas);
