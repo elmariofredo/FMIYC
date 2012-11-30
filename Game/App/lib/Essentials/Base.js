@@ -41,6 +41,13 @@ function getHeight() {
  * @param  {[type]} pHeight [description]
  * @return {[type]}         [description]
  */
-var getPropotionalHegiht = function(pWidth, pHeight) {
+var getPropotionalHeight = function(pWidth, pHeight) {
   return pHeight*(getHeight()/pWidth)
 }
+
+
+var centerImage = function(position, size) {
+  return ( position - ( size / 2 ) );
+}
+
+

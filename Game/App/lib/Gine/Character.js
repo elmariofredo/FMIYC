@@ -13,6 +13,7 @@
   var Character = Class.extend({
     x: 0,
     y: 0,
+    step: function () {},
     init: function (options) {
       var my = this;
 
@@ -21,9 +22,10 @@
         id: uniq_id(),
         playGround: playGround,
         name: 'GenericCharacter',
+        move: false,
         speed: 30,
         armor: 0,
-        start: {
+        position: {
           x: 0,
           y: 0
         },
@@ -46,12 +48,15 @@
       // Set on load Callback
       this.image.onload = function(){my.onLoadedImage()};
 
+      // Create custom move method if defined
+      if ( this.options.step )
+        this.step = this.options.step;
+
       this.load();
     },
 
     // When Character Image is loaded
-    onLoadedImage: function () {
-      
+    onLoadedImage: function () {      
 
       if ( this.options.sprite ) {
 
@@ -73,8 +78,13 @@
 
       }
 
+
       // Append Character to PlayGround
       this.playGround.addChild(this.bitmap);
+
+      // Set starting position
+      this.move(this.options.position);
+
 
       // Update PlayGround
       this.playGround.update();
@@ -86,8 +96,9 @@
     },
 
     set_coordinates: function (postion) {
-      this.x = postion.left+this.options.offset.left;
-      this.y = postion.top+this.options.offset.top;
+      // TODO: make it work also for non sprite images
+      this.x = centerImage(postion.left, this.options.sprite.frames.width);
+      this.y = centerImage(postion.top, this.options.sprite.frames.height);
     },
 
     move: function (position) {

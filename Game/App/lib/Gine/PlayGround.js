@@ -18,8 +18,10 @@
         id: uniq_id(),
         name: 'PlayGround',
         fps: 30,
-        width: null,
-        height: null,
+        dimesions: {
+          width: getWidth(),
+          height: getHeight()
+        },
         canvas: null,
         target_box: null
       }
@@ -38,8 +40,8 @@
       // Create Canvas if not exists
       if ( !this.options.canvas ) {
         this.canvas = document.createElement('canvas');
-        this.canvas.width = this.options.width || getWidth();
-        this.canvas.height = this.options.height || getHeight();
+        this.canvas.width = this.options.dimesions.width || getWidth();
+        this.canvas.height = this.options.dimesions.height || getHeight();
       
       // Use options Canvas
       } else {
