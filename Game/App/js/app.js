@@ -36,9 +36,33 @@ var clone = new Character({
 });
 
 // Add Controller for Hero
-new Joystick({
+var joystick = new Joystick({
   move: function(position) {
+    // console.info(position)
     hero.move(position);
   }
 });
+
+
+// Create Game Path
+var path = new WarriorsWay({
+  start: {
+    top: 237,
+    left: 126,
+    sprite: {
+      images: ['./App/img/start.png'],
+      frames: {width: 269, height: 117}
+    }
+  },
+  end: {
+    top: 237,
+    left: 1293,
+    sprite: {
+      images: ['./App/img/end.png'],
+      frames: {width: 269, height: 117}
+    } 
+  }
+})
+
+
 
