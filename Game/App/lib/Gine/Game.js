@@ -204,6 +204,12 @@
             shape = new createjs.Shape( stroke.endStroke() );
 
             break;
+
+          case 'code':
+
+            shape = element_options.load(my);
+
+            break;
         }
 
         my.playGround.addChild(shape);
