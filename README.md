@@ -30,9 +30,9 @@ The rules are packed in story which will show up as the intro of the game. 
 2.0 TO DO LIST
 ---------------------------------
 
-  •	points of crystal based upon online numbers of real GitHub users
-	•	more levels
-	•	score results
-	•	soundtrack music as playlist from Soundcloud
-	•	finished animation of characters
-	•	prepare game for tablets (touch control)
+  * points of crystal based upon online numbers of real GitHub users
+  * more levels
+  * score results
+  * soundtrack music as playlist from Soundcloud
+  * finished animation of characters
+  * prepare game for tablets (touch control)
