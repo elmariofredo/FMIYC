@@ -9,7 +9,7 @@
  */
 (function (window, undefined) {
 
-  var WarriorsWay = Class.extend({
+  var WarriorsWay = GameClass.extend({
     base_elements: {},
     joins_sprite: [],
     layers: [],
@@ -47,7 +47,7 @@
 
       my.build_base();
 
-      my.build_base_path();
+      my.build_path('path', 'start', 'end');
 
       my.render();
     },
@@ -70,19 +70,26 @@
         if ( type == 'end' )
           left = ( my.options.start.position.left + my.game.current_level.length );
 
-        my.base_elements[type].shape = my.game.playGround.display.sprite( 
-          oCanvas.extend( my.options[type].sprite, {
-            y: my.options[type].position.top,
-            x: left,
-            frame: 1,
-            direction: "x",
-            generate: true,
-            origin: {
-              y: 'center',
-              x: 'center'
-            }
-          })
-        );        
+        // Extend Default Options
+        oCanvas.extend( my.options[type].sprite, {
+          y: my.options[type].position.top,
+          x: left,
+          frame: 2,
+          direction: "x",
+          generate: true,
+          origin: {
+            y: 'center',
+            x: 'center'
+          }
+        });
+
+        my.base_elements[type].shape = my.game.playGround.display.sprite( my.options[type].sprite );
+        my.base_elements[type].placement = {
+          // top: 0,
+          top: ( my.options[type].position.top + my.options[type].placement_offset.top ),
+          // left: 0
+          left: ( left + my.options[type].placement_offset.left )
+        };
 
       });
 
@@ -93,48 +100,34 @@
     render: function () {
       var my = this;
 
-      $.each( my.base_elements, function ( name, element) {
+      $.each( my.base_elements, function ( name, element ) {
         my.game.elements[my.options.relative_to].addChild( element.shape );
       });
 
     },
 
-    build_base_path: function () {
+    build_path: function ( type, from, to ) {
       var my = this;  
 
-      var path;
-      var from = 'start';
-      var to = 'end';
+      my.base_elements[type] = {};
 
-      // my.options.path.offset = {
-      //   top: ( my.options.path.style.thickness / 2 )
-      // }
+      my.base_elements[type].shape = my.playGround.display.line({
+        start: my.addXY(my.base_elements[from].placement),
+        end: my.addXY(my.base_elements[to].placement),
+        stroke: my.options.path.stroke
+      });
 
-      // Define Basic Stroke
-      // var stroke = new createjs.Graphics().beginStroke( my.options.path.style.color );
-
-      // // TODO: Add more style options
-      // // Set Style
-      // stroke.setStrokeStyle( my.options.path.style.thickness );
-  
-      // stroke.moveTo( my.base_elements[from]['placement'].left, my.base_elements[from]['placement'].top + my.options.path.offset.top );
-      
-      // stroke.lineTo( my.base_elements[to]['placement'].left, my.base_elements[to]['placement'].top + my.options.path.offset.top );
-
-      // path = new createjs.Shape( stroke.endStroke() );
-
-      // my.base_elements['base_path'] = {
-      //   shape: path
-      // };
-
-      // my.add_to_layer(0, path);  
+      my.base_elements[type].placement = {
+        top: ( my.options.path.placement_offset.top ),
+        left: 0
+      };
+ 
     },
 
     move: function ( relative_position ) {
       var my = this;
 
       $.each( my.base_elements, function( name, element ) {
-        // console.info(name, element, element.shape)
         my.move_element( element.shape, relative_position );
       });
 

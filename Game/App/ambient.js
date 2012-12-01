@@ -47,6 +47,10 @@ var warriorsWay = {
       top: 'middle',
       left: 170
     },
+    placement_offset: {
+      top: 0,
+      left: 15
+    },
     sprite: {
       image: 'Game/img/start.png',
       generate: true,
@@ -59,12 +63,23 @@ var warriorsWay = {
       top: 'middle',
       left: 0
     },
+    placement_offset: {
+      top: 0,
+      left: -15
+    },
     sprite: {
       image: 'Game/img/end.png',
       generate: true,
       width: 269,
       height: 117
     } 
+  },
+  path: {
+    stroke: '58px rgba(180, 44, 58, 1)',
+    placement_offset: {
+      top: 29,
+      left: 0
+    }
   }
 };
 
