@@ -47,6 +47,7 @@ var Levels = [
 var warriorsWay = {
   relative_to: 'view_background',
   start: {
+    name: 'start_stand',
     position: {
       top: 'middle',
       left: 170
@@ -63,6 +64,7 @@ var warriorsWay = {
     }
   },
   end: {
+    name: 'end_stand',
     position: {
       top: 'middle',
       left: 0
@@ -84,7 +86,22 @@ var warriorsWay = {
       top: 29,
       left: 0
     }
-  }
+  },
+  checkpoints: [
+    {
+      name: 'hero_finish',
+      object_names: ['Octocat', 'start_stand'],
+      callback: function ( warriorWay, data ) {
+
+        
+        // if (!window.colision)
+          console.info('Colided!!!');
+        // alert('collided!!!');
+        // 
+        // window.colision = true
+      }
+    }
+  ]
 };
 
 var Characters = [

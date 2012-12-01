@@ -49,6 +49,7 @@
     },
     controllers: [],
     elements: {},
+    all_elements: {},
     scenes: {},
     levels: [],
     current_level: null,
@@ -180,12 +181,13 @@
 
       my.buildScenes();
 
-      var WarriorsWay = my.buildWarriorsWay();
+      my.buildWarriorsWay();
 
-      var Characters = my.buildCharacters();
+      my.buildCharacters();
 
       my.attachControllers();
 
+      my.warriorsWay.setupCheckpoints();
     },
 
     load: function () {
@@ -245,6 +247,7 @@
           element_options.height = my.dimensions[relative_to].size.height;
 
         switch ( element_options.type ) {
+
           case 'line':
 
             my.elements[index] = my.playGround.display.line({
@@ -292,6 +295,7 @@
 
     // Create Game Path
     buildWarriorsWay: function () {
+
       this.options.warriorsWay.game = this;      
       this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
 
@@ -308,7 +312,7 @@
 
         var character = new Character(character_options);
 
-        my.characters[character.unique_name] = character;
+        my.characters[character.name] = character;
 
         my.characters_map[character_options.type].push(character.unique_name);
       });
@@ -320,12 +324,73 @@
 
       my.options.joystick.game = my;
 
+      if ( my.warriorsWay.trigger !== undefined )
+        my.options.joystick.trigger = my.warriorsWay.trigger;
+
       my.joystick = new Joystick(my.options.joystick);
+    },
 
-      // var display_move_segment_size = my.dimensions.display.size.width/4;
+    // To have elements under one hash
+    // TODO: we should use single hash for all game elements
+    // collectElements: function () {
+    //   var my = this;
 
-      // console.info(my.dimensions.display, my.playGround.stage.mouse.x);
-    }
+    //   oCanvas.extend( my.all_elements, my.warriorsWay.elements);
+    //   oCanvas.extend( my.all_elements, my.characters);
+
+    // },
+
+    /**
+     * Detect Collisions
+     * @param  {Hash} border1 Coordinates and size
+     * @param  {Hash} border2 Coordinates and size
+     * @return {Boolean}      If colision is detected return true
+     */
+    // collisionObjects: function (bjectA, objectB) {
+
+    //   /*
+    //     Detect space between
+    //       leftA & rightB
+    //       rightA & leftB
+    //       topA & bottomB
+    //       bottomA & topB
+    //     Credits: http://indiegamr.com/
+    //    */
+      
+    //   console.info(
+    //     bjectA.left >= objectB.left + objectB.width, 
+    //     bjectA.left + bjectA.width <= objectB.left,
+    //     bjectA.top >= objectB.top + objectB.height,
+    //     bjectA.top + bjectA.height <= objectB.top
+    //   );
+
+    //   console.info()
+
+
+    //   if ( 
+    //     bjectA.left >= objectB.left + objectB.width || 
+    //     bjectA.left + bjectA.width <= objectB.left || 
+    //     bjectA.top >= objectB.top + objectB.height  || 
+    //     bjectA.top + bjectA.height <= objectB.top   
+    //   ) 
+    //     return false;
+    //   // else
+    //     // return true;
+    // }
+    
+
+    rect_collision = function(x1, y1, size1, x2, y2, size2) {
+      var bottom1, bottom2, left1, left2, right1, right2, top1, top2;
+      left1 = x1 - size1;
+      right1 = x1 + size1;
+      top1 = y1 - size1;
+      bottom1 = y1 + size1;
+      left2 = x2 - size2;
+      right2 = x2 + size2;
+      top2 = y2 - size2;
+      bottom2 = y2 + size2;
+      return !(left1 > right2 || left2 > right1 || top1 > bottom2 || top2 > bottom1);
+    };
 
 
   });

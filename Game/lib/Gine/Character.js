@@ -74,6 +74,7 @@
       });
 
       my.character = my.game.playGround.display.sprite( my.options.sprite );
+      my.game.all_elements[my.name] = my.character;
 
       my.character.start();
 
@@ -87,7 +88,7 @@
     start_position: function () {
       var my = this;
 
-      my.move(my.warriorsWay.base_elements.start.placement);
+      my.move(my.warriorsWay.elements.start.placement);
     },
 
     // Render Character
@@ -108,7 +109,17 @@
       my.character.y = my.y = position.top;
       my.character.x = my.x = position.left;
 
-    }
+    },
+
+    // dimensions: function () {
+    //   var my = this;
+    //   return {
+    //     top: my.y,
+    //     left: my.x,
+    //     width: my.options.sprite.width,
+    //     height: my.options.sprite.height
+    //   };
+    // }
 
   });
 

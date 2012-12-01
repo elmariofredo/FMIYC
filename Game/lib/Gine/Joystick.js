@@ -28,6 +28,8 @@
         v: null
       }
     },
+    step_trigger_delay: 30,
+    step_trigger_counter: 0,
     init: function (options) {
       var my = this;
 
@@ -36,7 +38,7 @@
         id: uniq_id(),
         name: 'Joystick',
         playGround: playGround,
-        move: function(){},
+        trigger: function(){},
         controllers: []
       };
 
@@ -143,13 +145,36 @@
             my.detectSegment('v', controller);
           }
 
-          controller.trigger(my, event);
+          // Controller trigger
+          if ( controller.trigger !== undefined )
+            controller.trigger(my, event);
+
+          // Option step trigger
+          my.stepTrigger();
           my.playGround.stage.redraw();
 
         }).start();
 
       });
       
+    },
+
+    // Delay trigger to speed things up
+    stepTrigger: function () {
+      var my = this;
+
+      // timeout
+      my.step_trigger_counter += 1;
+
+      if ( my.step_trigger_counter > my.step_trigger_delay ) {
+
+        my.options.trigger(my);
+        my.step_trigger_counter = 0;
+        
+      }
+
+      
+
     }
 
   });
