@@ -2,8 +2,8 @@
  * Basic Game Class Object
  *
  * Depends on
- *   Class.js  
- * 
+ *   Class.js
+ *
  */
 
 (function (window, undefined) {
@@ -20,6 +20,17 @@
 
     getColor: function (color) {
       return 'rgba('+ color.join( ', ' ) +')';
+    },
+
+    /**
+     * Add XY coordinates
+     * @param {Hash} position Hash including top and left
+     */
+    addXY: function ( position ) {
+      position.y = position.top;
+      position.x = position.left;
+
+      return position;
     }
 
   });

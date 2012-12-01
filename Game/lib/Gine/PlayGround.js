@@ -39,22 +39,17 @@
       
       // Create Canvas if not exists
       if ( !my.options.canvas ) {
-        my.canvas = document.createElement('canvas');
-        my.canvas.width = my.options.dimensions.width || 0;
-        my.canvas.height = my.options.dimensions.height || 0;
+        my.canvas_element = document.createElement('canvas');
+        my.canvas_element.width = my.options.dimensions.width || 0;
+        my.canvas_element.height = my.options.dimensions.height || 0;
       
       // Use options Canvas
       } else {
-        my.canvas = my.options.canvas;
+        my.canvas_element = my.options.canvas;
       }
 
       // Ovewrite canvas id
-      my.canvas.id = 'PlayGround';
-
-      my.canvas_back = document.createElement('canvas');
-      my.canvas_back.id = 'canvas_back';
-      my.canvas_front = document.createElement('canvas');
-      my.canvas_front.id = 'canvas_front';
+      my.canvas_element.id = 'PlayGround';
 
       // Append to target_box
       if ( my.options.target_box ) {
@@ -65,21 +60,21 @@
         var target = document.body;
       }
 
-      target.appendChild(my.canvas_back);
-      target.appendChild(my.canvas);
-      target.appendChild(my.canvas_front);
+      target.appendChild(my.canvas_element);
 
       // initializing the stage
-      my.stage = new createjs.Stage(my.canvas);
+      my.stage = oCanvas.create({
+        canvas: my.canvas_element,
+        background: my.options.color || '#ff00ff',
+        fps: my.options.fps,
+        disableScrolling: true
+      });
 
-      // Create Ticker
-      createjs.Ticker.setFPS(30);
-      createjs.Ticker.addListener(function(){my.tick()});
+      // Aliases
+      my.canvas = my.stage;
+      my.display = my.stage.display;
+
     },
-
-    tick: function () {
-      this.stage.update();
-    }
 
   });
 
