@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.0 (Mac) -->
+<!-- By Mike Swanson (http://blogs.msdn.com/mswanson/)        -->
+<!-- and MIX Online  (http://visitmix.com/)                   -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>intro_2</title>
+  <script src="Ai2CanvasAnimation.js"></script>
+  <script>
+
+    // Main canvas and context references
+    var canvas;
+    var ctx;
+
+    // Frames per second
+    var fps = 60.0;
+
+    function init() {
+
+      // Set main canvas and context references
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext("2d");
+
+      // Initialize animations
+      gradient14.alphaClock = new clock(0.50, 47.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text11.alphaClock = new clock(0.50, 47.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient13.alphaClock = new clock(0.50, 43.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text10.alphaClock = new clock(0.50, 43.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      octocat.alphaClock = new clock(0.50, 47.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient12.alphaClock = new clock(0.50, 38.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text9.alphaClock = new clock(0.50, 37.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient11.alphaClock = new clock(0.50, 35.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text8.alphaClock = new clock(0.50, 37.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient10.alphaClock = new clock(0.50, 33.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      crystal.alphaClock = new clock(0.50, 32.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text7.alphaClock = new clock(0.50, 32.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient9.alphaClock = new clock(0.50, 27.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text6.alphaClock = new clock(0.50, 27.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient7.alphaClock = new clock(0.50, 24.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text5.alphaClock = new clock(0.50, 27.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      clones2.alphaClock = new clock(0.50, 27.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient8.alphaClock = new clock(0.50, 20.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient6.alphaClock = new clock(0.50, 20.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text4.alphaClock = new clock(0.50, 20.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient5.alphaClock = new clock(0.50, 14.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      clones1.alphaClock = new clock(0.50, 20.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient4.alphaClock = new clock(0.50, 12.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text3.alphaClock = new clock(0.50, 20.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient3.alphaClock = new clock(0.50, 12.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text2.alphaClock = new clock(0.50, 12.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient2.alphaClock = new clock(0.50, 8.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      slide2.alphaClock = new clock(0.50, 20.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      text1.alphaClock = new clock(0.50, 7.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      gradient1.alphaClock = new clock(0.50, 3.50, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      logo.alphaClock = new clock(0.50, 3.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      slide1.alphaClock = new clock(0.50, 3.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+      skip.alphaClock = new clock(0.50, 47.00, -1, false, 1, linear, 1.0, 1.00, 0.0000);
+
+      // Start animation clocks
+      gradient14.alphaClock.start();
+      text11.alphaClock.start();
+      gradient13.alphaClock.start();
+      text10.alphaClock.start();
+      octocat.alphaClock.start();
+      gradient12.alphaClock.start();
+      text9.alphaClock.start();
+      gradient11.alphaClock.start();
+      text8.alphaClock.start();
+      gradient10.alphaClock.start();
+      crystal.alphaClock.start();
+      text7.alphaClock.start();
+      gradient9.alphaClock.start();
+      text6.alphaClock.start();
+      gradient7.alphaClock.start();
+      text5.alphaClock.start();
+      clones2.alphaClock.start();
+      gradient8.alphaClock.start();
+      gradient6.alphaClock.start();
+      text4.alphaClock.start();
+      gradient5.alphaClock.start();
+      clones1.alphaClock.start();
+      gradient4.alphaClock.start();
+      text3.alphaClock.start();
+      gradient3.alphaClock.start();
+      text2.alphaClock.start();
+      gradient2.alphaClock.start();
+      slide2.alphaClock.start();
+      text1.alphaClock.start();
+      gradient1.alphaClock.start();
+      logo.alphaClock.start();
+      slide1.alphaClock.start();
+      skip.alphaClock.start();
+
+      // Set animation timer
+      setInterval(drawFrame, (1000 / fps));
+    }
+
+    function updateAnimations() {
+
+      // Update animation clocks
+      updateAllClocks();
+    }
+
+    function drawFrame() {
+
+      // Update animations
+      updateAnimations();
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      gradient15(ctx);
+
+      credits(ctx);
+
+      creditsSpot(ctx);
+
+      play(ctx);
+
+      playSpot(ctx);
+
+      logo2(ctx);
+
+      octocat2(ctx);
+
+      ctx.save();
+      ctx.globalAlpha = gradient14.alphaClock.value;
+      gradient14(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text11.alphaClock.value;
+      text11(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient13.alphaClock.value;
+      gradient13(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text10.alphaClock.value;
+      text10(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = octocat.alphaClock.value;
+      octocat(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient12.alphaClock.value;
+      gradient12(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text9.alphaClock.value;
+      text9(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient11.alphaClock.value;
+      gradient11(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text8.alphaClock.value;
+      text8(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient10.alphaClock.value;
+      gradient10(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = crystal.alphaClock.value;
+      crystal(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text7.alphaClock.value;
+      text7(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient9.alphaClock.value;
+      gradient9(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text6.alphaClock.value;
+      text6(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient7.alphaClock.value;
+      gradient7(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text5.alphaClock.value;
+      text5(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = clones2.alphaClock.value;
+      clones2(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient8.alphaClock.value;
+      gradient8(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient6.alphaClock.value;
+      gradient6(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text4.alphaClock.value;
+      text4(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient5.alphaClock.value;
+      gradient5(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = clones1.alphaClock.value;
+      clones1(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient4.alphaClock.value;
+      gradient4(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text3.alphaClock.value;
+      text3(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient3.alphaClock.value;
+      gradient3(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text2.alphaClock.value;
+      text2(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient2.alphaClock.value;
+      gradient2(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = slide2.alphaClock.value;
+      slide2(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = text1.alphaClock.value;
+      text1(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = gradient1.alphaClock.value;
+      gradient1(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = logo.alphaClock.value;
+      logo(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = slide1.alphaClock.value;
+      slide1(ctx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = skip.alphaClock.value;
+      skip(ctx);
+      ctx.restore();
+
+      skipSpot(ctx);
+    }
+
+    function gradient15(ctx) {
+
+      var gradient;
+
+      // gradient15/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function credits(ctx) {
+
+      // credits/Group
+      ctx.save();
+
+      // credits/Group/credits
+      ctx.save();
+      ctx.font = "26.0px 'American Captain'";
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("credits", 480.2, 526.2);
+      ctx.restore();
+      ctx.restore();
+    }
+
+    function creditsSpot(ctx) {
+
+      // creditsSpot/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(545.5, 526.2);
+      ctx.lineTo(480.3, 526.2);
+      ctx.lineTo(480.3, 507.3);
+      ctx.lineTo(545.5, 507.3);
+      ctx.lineTo(545.5, 526.2);
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function play(ctx) {
+
+      // play/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(639.1, 493.3);
+      ctx.lineTo(386.9, 493.3);
+      ctx.lineTo(386.9, 437.4);
+      ctx.lineTo(639.1, 437.4);
+      ctx.lineTo(639.1, 493.3);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+
+      // play/play
+      ctx.font = "51.7px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("play", 471.9, 484.6);
+      ctx.restore();
+    }
+
+    function playSpot(ctx) {
+
+      // playSpot/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(639.1, 493.3);
+      ctx.lineTo(386.9, 493.3);
+      ctx.lineTo(386.9, 437.4);
+      ctx.lineTo(639.1, 437.4);
+      ctx.lineTo(639.1, 493.3);
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function logo2(ctx) {
+
+      var alpha = ctx.globalAlpha;
+      var gradient;
+
+      // logo2
+      ctx.drawImage(document.getElementById("image1"), 268.5, 57.6);
+    }
+
+    function octocat2(ctx) {
+
+      // octocat2/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image2"), 429.2, 222.5);
+      ctx.restore();
+    }
+
+    function gradient14(ctx) {
+
+      var gradient;
+
+      // gradient14/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text11(ctx) {
+
+      // text11/Hurry up
+      ctx.save();
+      ctx.font = "55.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("Hurry up!", 420.1, 219.1);
+      ctx.restore();
+    }
+
+    function gradient13(ctx) {
+
+      var gradient;
+
+      // gradient13/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text10(ctx) {
+
+      // text10/How to find him Go forward You can stop and wait but never go back
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("How to find him? Go forward! ", 345.6, 176.4);
+      ctx.fillText("You can ", 282.7, 209.4);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("stop and wait", 374.3, 209.4);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" but ", 530.0, 209.4);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("never go back", 579.0, 209.4);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(".", 736.2, 209.4);
+      ctx.restore();
+    }
+
+    function octocat(ctx) {
+
+      // octocat/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image3"), 408.5, 245.3);
+      ctx.restore();
+    }
+
+    function gradient12(ctx) {
+
+      var gradient;
+
+      // gradient12/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text9(ctx) {
+
+      // text9/profesor zero
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("profesor zero", 430.7, 313.3);
+      ctx.restore();
+    }
+
+    function gradient11(ctx) {
+
+      var gradient;
+
+      // gradient11/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text8(ctx) {
+
+      // text8/Octocat has decided to escape and break this fatal cursebut there is only one man who can help hi
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("Octocat has decided to escape and break this fatal curse,", 192.8, 219.8);
+      ctx.fillText("but there is only one man who can help him...", 263.2, 252.8);
+      ctx.restore();
+    }
+
+    function gradient10(ctx) {
+
+      var gradient;
+
+      // gradient10/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function crystal(ctx) {
+
+      // crystal/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image4"), 328.0, 150.0);
+      ctx.restore();
+    }
+
+    function text7(ctx) {
+
+      // text7/To gain more powerscore the Octocat can pick up Crystalsof GITHUB network
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("To gain more ", 180.6, 348.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("power/score", 326.3, 348.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" the Octocat can pick up ", 478.5, 348.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("Crystals", 744.8, 348.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("of GITHUB network.", 403.5, 381.3);
+      ctx.restore();
+    }
+
+    function gradient9(ctx) {
+
+      var gradient;
+
+      // gradient9/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1024.0, 576.0);
+      ctx.lineTo(0.0, 576.0);
+      ctx.lineTo(0.0, 0.0);
+      ctx.lineTo(1024.0, 0.0);
+      ctx.lineTo(1024.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(512.0, 576.0, 512.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text6(ctx) {
+
+      var alpha = ctx.globalAlpha;
+
+      // text6/The losers score is automatically added to the winner
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("The loser's ", 204.8, 483.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("score", 333.6, 483.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText(" is automatically added to the winner", 398.4, 483.3);
+
+      // text6/3
+      ctx.globalAlpha = alpha * 0.76;
+      ctx.font = "24.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("3", 508.7, 227.3);
+      ctx.restore();
+    }
+
+    function gradient7(ctx) {
+
+      var gradient;
+
+      // gradient7/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text5(ctx) {
+
+      // text5/The Clone could by destroyed in fight but Octocat must be stronger if the clone is weaker the cir
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("The ", 133.7, 118.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("Clone", 175.9, 118.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" could by ", 238.8, 118.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("destroyed", 346.1, 118.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" in fight but Octocat must be stronger", 465.9, 118.3);
+      ctx.fillText("- if the clone is weaker the circle around him is incomplete", 185.8, 151.3);
+
+      // text5/Path
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 405.3);
+      ctx.lineTo(1.0, 405.3);
+      ctx.lineTo(1.0, 339.3);
+      ctx.lineTo(1025.0, 339.3);
+      ctx.lineTo(1025.0, 405.3);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function clones2(ctx) {
+
+      // clones2/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image5"), 417.5, 239.4);
+      ctx.restore();
+    }
+
+    function gradient8(ctx) {
+
+      var gradient;
+
+      // gradient8/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function gradient6(ctx) {
+
+      // gradient6/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text4(ctx) {
+
+      // text4/Doesnt matter which branch he will chosethey always will be there and hunt him down
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("Doesn't matter which branch he will chose", 502.0, 503.3);
+      ctx.fillText("they always will be there and hunt him down...", 454.2, 536.3);
+      ctx.restore();
+    }
+
+    function gradient5(ctx) {
+
+      // gradient5/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function clones1(ctx) {
+
+      // clones1/Group
+      ctx.save();
+
+      // clones1/Group/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image6"), 223.5, 238.1);
+
+      // clones1/Group/Image
+      ctx.drawImage(document.getElementById("image7"), 634.2, 238.1);
+      ctx.restore();
+      ctx.restore();
+    }
+
+    function gradient4(ctx) {
+
+      // gradient4/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text3(ctx) {
+
+      // text3/There are his Clones his bad alter egosformed on each fork of the road traveling parallel paths
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("There are his ", 48.0, 77.3);
+      ctx.fillStyle = "rgb(29, 197, 207)";
+      ctx.fillText("Clones", 199.0, 77.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(", his bad alter egos,", 274.5, 77.3);
+      ctx.fillStyle = "rgb(29, 197, 207)";
+      ctx.fillText("formed on each fork", 48.0, 110.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" of the road, traveling parallel paths ", 278.6, 110.3);
+      ctx.restore();
+    }
+
+    function gradient3(ctx) {
+
+      // gradient3/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function text2(ctx) {
+
+      // text2/He supposed to be his loyal servantso Profesor made a measure to ensure Octocats obedience
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("He supposed to be his loyal servant", 312.7, 134.3);
+      ctx.fillText("so Profesor made a measure to ensure Octocat's obedience.", 180.6, 167.3);
+      ctx.restore();
+    }
+
+    function gradient2(ctx) {
+
+      var gradient;
+
+      // gradient2/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function slide2(ctx) {
+
+      // slide2/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image8"), 404.0, 188.3);
+      ctx.restore();
+    }
+
+    function text1(ctx) {
+
+      // text1/Octocat was created as Profesor Onesgenetic experiment 
+      ctx.save();
+      ctx.font = "33.0px 'American Captain'";
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("Octocat", 295.8, 134.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText(" was created as ", 384.1, 134.3);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("Profesor One's", 560.2, 134.3);
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("genetic experiment ", 404.2, 167.3);
+      ctx.restore();
+    }
+
+    function gradient1(ctx) {
+
+      var gradient;
+
+      // gradient1/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1025.0, 576.0);
+      ctx.lineTo(1.0, 576.0);
+      ctx.lineTo(1.0, 0.0);
+      ctx.lineTo(1025.0, 0.0);
+      ctx.lineTo(1025.0, 576.0);
+      ctx.closePath();
+      gradient = ctx.createLinearGradient(513.0, 576.0, 513.0, 0.0);
+      gradient.addColorStop(0.00, "rgb(85, 139, 155)");
+      gradient.addColorStop(0.50, "rgb(87, 151, 145)");
+      gradient.addColorStop(1.00, "rgb(88, 163, 135)");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function logo(ctx) {
+
+      var alpha = ctx.globalAlpha;
+      var gradient;
+
+      // logo
+      ctx.drawImage(document.getElementById("image9"), 240.5, 214.0);
+    }
+
+    function slide1(ctx) {
+
+      // slide1/el mario fredo  tyna lovapresentsgame
+      ctx.save();
+      ctx.font = "25.0px 'American Captain'";
+      ctx.fillStyle = "rgb(231, 222, 183)";
+      ctx.fillText("el mario fredo & tyna lova", 398.3, 78.4);
+      ctx.fillText("presents", 473.9, 101.4);
+      ctx.fillStyle = "rgb(180, 44, 58)";
+      ctx.fillText("game", 491.2, 147.4);
+      ctx.restore();
+    }
+
+    function skip(ctx) {
+
+      // skip/skip intro
+      ctx.save();
+      ctx.font = "19.4px 'American Captain'";
+      ctx.fillStyle = "rgb(203, 190, 136)";
+      ctx.fillText("skip intro", 948.5, 22.1);
+      ctx.restore();
+    }
+
+    function skipSpot(ctx) {
+
+      // skipSpot/Path
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(1014.8, 22.1);
+      ctx.lineTo(948.5, 22.1);
+      ctx.lineTo(948.5, 7.7);
+      ctx.lineTo(1014.8, 7.7);
+      ctx.lineTo(1014.8, 22.1);
+      ctx.closePath();
+      ctx.restore();
+    }
+  </script>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1025" height="576"></canvas>
+   <img alt="logo2" id="image1" style="display: none" src="logo2.png" />
+   <img alt="Image" id="image2" style="display: none" src="octocat-hero_000011.png" />
+   <img alt="Image" id="image3" style="display: none" src="octocat_hero2_000011.png" />
+   <img alt="Image" id="image4" style="display: none" src="crystals_000071.png" />
+   <img alt="Image" id="image5" style="display: none" src="octocat_clon_000011.png" />
+   <img alt="Image" id="image6" style="display: none" src="octocat_clon_000012.png" />
+   <img alt="Image" id="image7" style="display: none" src="octocat_clon_000013.png" />
+   <img alt="Image" id="image8" style="display: none" src="octocat-hero_000012.png" />
+   <img alt="logo" id="image9" style="display: none" src="logo.png" />
+ </body>
+</html>
