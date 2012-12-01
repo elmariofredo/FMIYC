@@ -34,5 +34,5 @@ The rules are packed in story which will show up as the intro of the game. 
   * more levels
   * score results
   * soundtrack music as playlist from Soundcloud
-  * finished animation of characters
+  * finish animation of characters
   * prepare game for tablets (touch control)
