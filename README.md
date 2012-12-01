@@ -20,7 +20,7 @@ The game is based on GitHub principles - cloning, forks and branches. Main char
 
 For this purposes there are Crystals based upon users of GitHub, after pick up will show the name of real (random) user and how much points he give. For better orientation the crystals are divided to 3 colours, green with lowest number of points, red with highest and yellow with middle.
 
-Player is running with Octocat through playground and has to decide which fork he will chose. He can run just straight to next level but with very low score. The main finesse is in the fact that at each fork are created clones, enemies whose have the same score as Octocat in the moment of their creation. Octocat can runaway or pick up same crystal - gain higher score/power, wait for clone and destroy him in fight. This is best way how to achieve the highest score.
+Player is running with Octocat through playground and has to decide which fork he will chose. He can run just straight to next level but with very low score. The main finesse is in the fact that at each fork creats clones, enemies whose have the same score as Octocat in the moment of their creation. Octocat can runaway or pick up same crystal - gain higher score/power, wait for clone and destroy him in fight. This is best way how to achieve the highest score.
 
 There are some limitations in game rules, player should chose strategically the way he will go, since there is only one way. He can decide which fork he will go but he can not go back. Only possible moves are: run forward or stop.
 
