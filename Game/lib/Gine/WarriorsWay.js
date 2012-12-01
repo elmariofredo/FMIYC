@@ -124,7 +124,7 @@
  
     },
 
-    move: function ( relative_position ) {
+    roll: function ( relative_position ) {
       var my = this;
 
       $.each( my.base_elements, function( name, element ) {

@@ -5,8 +5,8 @@
  *   Base.js
  *   Class.js
  *   jQuery.js
- *   Bitmap.js   
- * 
+ *   Bitmap.js
+ *
  */
 
 (function (window, undefined) {
@@ -19,7 +19,7 @@
       var my = this;
 
       // Default options
-      this.options = {        
+      this.options = {
         id: my.unique_id(),
         playGround: playGround,
         name: 'GenericCharacter',
@@ -34,9 +34,8 @@
           top: 0,
           left: 0
         },
-        src: 'Game/App/img/GenericCharacter.png',
         sprite: false
-      }
+      };
 
       // Merge options
       $.extend( my.options, options || {} );
@@ -44,14 +43,10 @@
       my.id = my.options.id;
       my.name = my.options.name;
       my.unique_name = my.unique_name();
+
+      my.game = my.options.game;
       my.playGround = my.options.playGround;
       my.warriorsWay = my.options.warriorsWay;
-
-      // Create Image Element
-      my.image = new Image();
-
-      // Set on load Callback
-      my.image.onload = function(){my.onLoadedImage()};
 
       // Create custom move method if defined
       if ( my.options.step )
@@ -60,84 +55,61 @@
       my.load();
     },
 
-    // When Character Image is loaded
-    onLoadedImage: function () {      
-
-      if ( this.options.sprite ) {
-
-        this.sprite  = new createjs.SpriteSheet(this.options.sprite);
-
-        this.animation = new createjs.BitmapAnimation(this.sprite)
-
-        this.animation.play();
-
-        // Append Character to PlayGround
-        this.playGround.addChild(this.animation)
-
-      } else {
-
-        // Create Bitmap Object
-        this.bitmap = new createjs.Bitmap(this.image);
-        this.bitmap.name = this.options.name;
-        this.bitmap.snapToPixel = true;
-
-      }
-
-
-      // Append Character to PlayGround
-      this.playGround.addChild(this.bitmap);
-
-      // Set starting position
-      this.start_position();
-
-
-      // Update PlayGround
-      this.playGround.update();
-    },
-
     // Load Character Image
     load: function () {
-      this.image.src = this.options.src;
+      var my = this;
+
+      // Extend Default Options
+      oCanvas.extend( my.options.sprite, {
+        direction: "x",
+        duration: 35,
+        generate: true,
+        y: 50,
+        x: 50,
+        origin: {
+          y: 80,
+          x: 103
+        },
+        numFrames: 30
+      });
+
+      my.character = my.game.playGround.display.sprite( my.options.sprite );
+
+      my.character.start();
+
+      // Set starting position
+      my.start_position();
+
+      my.render();
     },
 
     // Go to start position
     start_position: function () {
       var my = this;
 
-      my.move(my.warriorsWay.base_elements.start.placement)
+      my.move(my.warriorsWay.base_elements.start.placement);
+    },
+
+    // Render Character
+    render: function () {
+      var my = this;
+
+      my.game.elements[my.options.relative_to].addChild( my.character );
+
     },
 
     run: function () {
       
     },
 
-    set_coordinates: function (position) {
-      var my = this;      
-
-      // TODO: make it work also for non sprite images
-      my.x = centerImage(position.left, my.options.sprite.frames.width);
-      my.y = centerImage(position.top, my.options.sprite.frames.height);
-    },
-
     move: function (position) {
       var my = this;
-      
-      my.set_coordinates(position);
 
-      if ( my.animation !== undefined ) {
+      my.character.y = my.y = position.top;
+      my.character.x = my.x = position.left;
 
-        my.animation.x = my.x;
-        my.animation.y = my.y;
-
-      } else {
-
-        my.bitmap.x = my.x;
-        my.bitmap.y = my.y;
-
-      }
-
-      my.playGround.update();
     }
+
   });
 
 

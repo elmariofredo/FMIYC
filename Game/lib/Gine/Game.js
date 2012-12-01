@@ -180,11 +180,11 @@
 
       my.buildScenes();
 
-      my.buildWarriorsWay();
+      var WarriorsWay = my.buildWarriorsWay();
 
-      // my.buildCharacters();
+      var Characters = my.buildCharacters();
 
-      // my.attachControllers();
+      my.attachControllers();
 
     },
 
@@ -295,45 +295,37 @@
       this.options.warriorsWay.game = this;      
       this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
 
-      // ['start', 'end']
-      // var line = my.playGround.display.line({
-      //   start: { x: 80, y: 60 },
-      //   end: { x: 280, y: 170 },
-      //   stroke: "20px #0aa",
-      //   cap: "round"
-      // });
-
-
-      // my.elements['WarriorsWay']
     },
 
-    // // Create Hero
-    // buildCharacters: function () {
-    //   var my = this;
+    // Create Hero
+    buildCharacters: function () {
+      var my = this;
 
-    //   $.each( this.options.characters, function (index, character_options) {
+      $.each( this.options.characters, function (index, character_options) {
 
-    //     character_options.warriorsWay = my.warriorsWay;
+        character_options.warriorsWay = my.warriorsWay;
+        character_options.game = my;
 
-    //     var character = new Character(character_options);
+        var character = new Character(character_options);
 
-    //     my.characters[character.unique_name] = character;
+        my.characters[character.unique_name] = character;
 
-    //     my.characters_map[character_options.type].push(character.unique_name);
-    //   });
+        my.characters_map[character_options.type].push(character.unique_name);
+      });
 
-    // },
+    },
 
-    // attachControllers: function () {
-    //   var my = this;
+    attachControllers: function () {
+      var my = this;
 
-    //   new Joystick({
-    //     move: function (track) {
-    //       my.characters[my.characters_map.hero[0]].step(track);
-    //     }
-    //   });
+      my.options.joystick.game = my;
 
-    // }
+      my.joystick = new Joystick(my.options.joystick);
+
+      // var display_move_segment_size = my.dimensions.display.size.width/4;
+
+      // console.info(my.dimensions.display, my.playGround.stage.mouse.x);
+    }
 
 
   });

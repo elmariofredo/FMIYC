@@ -14,7 +14,9 @@ var FMIYC = new Game({
   },
   defaultScene: 'game',
   levels: Levels,
-  warriorsWay: warriorsWay
+  warriorsWay: warriorsWay,
+  characters: Characters,
+  joystick: JoystickOptions
 });
 
 FMIYC.build();

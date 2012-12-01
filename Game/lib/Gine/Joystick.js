@@ -4,8 +4,8 @@
  * Depends on
  *   Base.js
  *   Class.js
- *   jQuery.js   
- * 
+ *   jQuery.js
+ *
  */
 (function (window, undefined) {
 
@@ -18,70 +18,138 @@
       top: 0,
       left: 0
     },
+    display: {
+      segments: {
+        h: [],
+        v: []
+      },
+      current_segment: {
+        h: null,
+        v: null
+      }
+    },
     init: function (options) {
       var my = this;
 
       // Default options
-      this.options = {        
+      my.options = {
         id: uniq_id(),
         name: 'Joystick',
         playGround: playGround,
-        move: function(){}
-      }
+        move: function(){},
+        controllers: []
+      };
 
       // Merge options
-      $.extend( this.options, options || {} );
+      $.extend( my.options, options || {} );
 
-      this.playGround = this.options.playGround;
+      my.game = my.options.game;
+      my.playGround = my.options.playGround;
 
       // Create/Load Canvas
-      this.load();
+      my.load();
+    },
+
+    /**
+     * Create Display segments for controller
+     * @param  {Hash} controller    Controller Options
+     * @return {Boolean}            Always true my dear
+     */
+    defSegments: function (type, controller) {
+      var my = this;
+
+      var screen_size_type;
+
+      if ( type == 'h' ) {
+        screen_size_type = 'width';
+      } else {
+        screen_size_type = 'height';
+      }
+
+      var display_move_segment_size = my.game.dimensions[controller.segments.on].size[screen_size_type] / ( controller.segments[type].length + 1 );
+
+      var Segments_borders = {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      };
+
+      $.each( controller.segments[type], function ( index, segment ) {
+
+        Segments_borders.bottom += display_move_segment_size;
+        Segments_borders.right += display_move_segment_size;
+
+        my.display.segments[type].push({
+          borders: $.extend({}, Segments_borders),
+          data: segment
+        });
+
+        Segments_borders.top += display_move_segment_size;
+        Segments_borders.left += display_move_segment_size;
+
+      });
+
+    },
+
+    detectSegment: function (type, controller) {
+      var my = this;
+
+      var axes, in_segment;
+
+      if ( type == 'h' )
+        axes = 'x';
+      else
+        axes = 'y';
+
+      // Horizontal
+      $.each( my.display.segments[type], function ( index, data ) {
+        
+        if ( type == 'h' )
+          in_segment = ( my.game.playGround.stage.mouse[axes] < data.borders.right );
+        else
+          in_segment = ( my.game.playGround.stage.mouse[axes] < data.borders.bottom );
+
+
+        if ( in_segment ) {
+          my.display.current_segment[type] = my.display.segments[type][index];
+          return false;
+        } else {
+          // TODO: cursor is not firing on very righ so then we can't afford default state
+          // my.display.current_segment[type] = my.display.segments[type][controller.segments.default_segments[type]];
+        }
+
+      });
+
     },
 
     // Load event on playGround
     load: function () {
       var my = this;
       
-      this.playGround.onMouseMove = function(mouseEvent) {
-        my.move(mouseEvent);
-      }
+      $.each( my.options.controllers, function ( name, controller ) {
 
-      // For calibration purposes
-      this.playGround.onMouseUp = function(mouseEvent) {
-        // my.move(mouseEvent);
-      }
-      
-    },
+        var bind_type = controller.bind.join(' ');
 
-    // Make Move Method
-    move: function (mouseEvent) {
-
-      // Save Current position for comparsion
-      this.position = {
-        top: mouseEvent.stageY,
-        left: mouseEvent.stageX
-      }
-
-      // Call Instance move Method
-      this.options.move({
-        change: {
-          top: this.position.top - this.prev_position.top,
-          left: this.position.left - this.prev_position.left
-        },
-        current: {
-          top: this.position.top,
-          left: this.position.left
+        if ( controller.segments !== undefined ) {
+          my.defSegments('h', controller);
+          my.defSegments('v', controller);
         }
+
+        my.playGround.stage.setLoop(function () {
+          
+          if ( controller.segments !== undefined ) {
+            my.detectSegment('h', controller);
+            my.detectSegment('v', controller);
+          }
+
+          controller.trigger(my, event);
+          my.playGround.stage.redraw();
+
+        }).start();
+
       });
-
-      // Save Current position for comparsion
-      this.prev_position = {
-        top: mouseEvent.stageY,
-        left: mouseEvent.stageX
-      }
-
-      // Update Stage
-      this.playGround.update();
+      
     }
 
   });
