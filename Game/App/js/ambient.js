@@ -90,7 +90,7 @@ var Game =  new Game({
         left: 97
       },
       sprite: {
-        images: ['./App/img/start.png'],
+        images: ['Game/App/img/start.png'],
         frames: {width: 269, height: 117}
       }
     },
@@ -104,7 +104,7 @@ var Game =  new Game({
         left: 175
       },
       sprite: {
-        images: ['./App/img/end.png'],
+        images: ['Game/App/img/end.png'],
         frames: {width: 269, height: 117}
       } 
     },
@@ -122,7 +122,7 @@ var Game =  new Game({
 
     joins: {
       sprite: {
-        images: ['./App/img/path.png'],
+        images: ['Game/App/img/path.png'],
         frames: {width: 166, height: 170}
       },
       kinds: {
@@ -162,7 +162,7 @@ var Game =  new Game({
       name: 'Octocat',
       type: 'hero',
       sprite: {
-        images: ['./App/img/hero_100x100.png'],
+        images: ['Game/App/img/hero_100x100.png'],
         frames: {width: 100, height: 100},
         animations: {always:[0,30]}
       },
@@ -185,7 +185,7 @@ var Game =  new Game({
     //   name: 'Clone',
     //   // position: path.base_elements['end']['placement'], 
     //   sprite: {
-    //     images: ['./App/img/clone_100x100.png'],
+    //     images: ['Game/App/img/clone_100x100.png'],
     //     frames: {width: 100, height: 100},
     //     animations: {always:[0,30]}
     //   }

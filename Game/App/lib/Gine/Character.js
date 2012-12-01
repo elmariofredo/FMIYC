@@ -34,7 +34,7 @@
           top: 0,
           left: 0
         },
-        src: './App/img/GenericCharacter.png',
+        src: 'Game/App/img/GenericCharacter.png',
         sprite: false
       }
 
