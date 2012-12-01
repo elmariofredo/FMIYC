@@ -1,5 +1,7 @@
 
 
-// Game.render();
+var FMIYC = new Game({
+  playGround: {}
+});
 
-
+FMIYC.render();

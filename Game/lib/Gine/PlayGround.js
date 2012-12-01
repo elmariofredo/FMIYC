@@ -51,11 +51,6 @@
       // Ovewrite canvas id
       my.canvas.id = 'PlayGround';
 
-      my.canvas_back = document.createElement('canvas');
-      my.canvas_back.id = 'canvas_back';
-      my.canvas_front = document.createElement('canvas');
-      my.canvas_front.id = 'canvas_front';
-
       // Append to target_box
       if ( my.options.target_box ) {
         var target = my.options.target_box;
@@ -65,16 +60,16 @@
         var target = document.body;
       }
 
-      target.appendChild(my.canvas_back);
       target.appendChild(my.canvas);
-      target.appendChild(my.canvas_front);
 
       // initializing the stage
-      my.stage = new createjs.Stage(my.canvas);
+      my.stage = oCanvas.create({
+        canvas: my.canvas,
+        background: '#ff00ff',
+        fps: my.options.fps,
+        disableScrolling: true
+      });
 
-      // Create Ticker
-      createjs.Ticker.setFPS(30);
-      createjs.Ticker.addListener(function(){my.tick()});
     },
 
     tick: function () {

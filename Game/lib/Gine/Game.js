@@ -61,24 +61,16 @@
           width: 1024,
           height: 400
         },
-        default_view: 'board'
+        default_view: 'board',
+        playGround: {}
       }
 
       // Merge options
       $.extend( this.options, options || {} );
 
-      this.playGround = this.options.playGround;
-
       my.setDimensions();
-
-      // Create/Load Canvas
-      this.load();
     },
 
-    // Load event on playGround
-    load: function () {
-      var my = this;
-    },
 
     // Set Game Sizes, Resolutions, and offsets
     setDimensions: function () {
@@ -152,27 +144,6 @@
       return position;
     },
 
-    /**
-     * Use getRelativePosition for top position
-     * @param  {String} element         Element where to correlate position to
-     * @param  {Integer} top_position  top position
-     * @return {Integer}                Return top Position
-     */
-    getRelTop: function (element, top_position) {
-      return this.getRelativePosition(element, {top: top_position}).top;
-    },
-
-    /**
-     * Use getRelativePosition for left position
-     * @param  {String} element         Element where to correlate position to
-     * @param  {Integer} left_position  Left position
-     * @return {Integer}                Return Left Position
-     */
-    getRelLeft: function (element, left_position) {
-      return this.getRelativePosition(element, {left: left_position}).left;
-    },
-
-
 
     // Render whole game
     render: function () {
@@ -180,13 +151,13 @@
 
       my.buildPlayground();
 
-      my.buildElements();
+      // my.buildElements();
 
-      my.buildWarriorsWay();
+      // my.buildWarriorsWay();
 
-      my.buildCharacters();
+      // my.buildCharacters();
 
-      my.attachControllers();
+      // my.attachControllers();
 
     },
 
@@ -198,107 +169,101 @@
       // Set playground to full screen
       my.options.playGround.dimensions = my.dimensions.display.size;
 
+      // Add game reference
+      my.options.playGround.game = my;
+
       my.playGroundStage = new PlayGround( my.options.playGround );
       my.playGround = my.playGroundStage.stage;
-
-      my.pureCanvasBackElement = document.getElementById("canvas_back")
-      my.pureCanvasBack = my.pureCanvasBackElement.getContext("2d");
-      my.pureCanvasFrontElement = document.getElementById("canvas_front")
-      my.pureCanvasFront = my.pureCanvasFrontElement.getContext("2d");
-
-      my.pureCanvasBackElement.height = my.dimensions.display.size.height
-
-      my.CanvasAssests = new CanvasAssestsClass();
 
       window.playGround = my.playGround;
     },
 
-    // Build static game elements
-    buildElements: function () {
-      var my = this;
+    // // Build static game elements
+    // buildElements: function () {
+    //   var my = this;
 
-      $.each( my.options.elements, function ( index, element_options ) {
+    //   $.each( my.options.elements, function ( index, element_options ) {
 
-        var shape = null;
+    //     var shape = null;
 
-        switch ( element_options.type ) {
-          case 'lineTo':
+    //     switch ( element_options.type ) {
+    //       case 'lineTo':
 
-            // Define Basic Stroke
-            var stroke = new createjs.Graphics().beginStroke( my.getColor( element_options.color ) );
+    //         // Define Basic Stroke
+    //         var stroke = new createjs.Graphics().beginStroke( my.getColor( element_options.color ) );
 
-            // TODO: Add more style options
-            // Set Style
-            stroke.setStrokeStyle( element_options.style.thickness );
+    //         // TODO: Add more style options
+    //         // Set Style
+    //         stroke.setStrokeStyle( element_options.style.thickness );
 
-            // Get Start Position
-            var current_path = element_options.path.shift();
+    //         // Get Start Position
+    //         var current_path = element_options.path.shift();
 
-            // Start Position
-            var position = my.getRelativePosition(element_options.relative_to, current_path);
-            // console.info(position)
-            stroke.moveTo( position.left, position.top );
+    //         // Start Position
+    //         var position = my.getRelativePosition(element_options.relative_to, current_path);
+    //         // console.info(position)
+    //         stroke.moveTo( position.left, position.top );
 
-            // Go to each path
-            $.each( element_options.path, function ( index, element_options_path ) {
+    //         // Go to each path
+    //         $.each( element_options.path, function ( index, element_options_path ) {
               
-              var position = my.getRelativePosition(element_options.relative_to, element_options_path);
-              stroke.lineTo( position.left, position.top );
+    //           var position = my.getRelativePosition(element_options.relative_to, element_options_path);
+    //           stroke.lineTo( position.left, position.top );
 
-            });
+    //         });
 
-            shape = new createjs.Shape( stroke.endStroke() );
+    //         shape = new createjs.Shape( stroke.endStroke() );
 
-            break;
+    //         break;
 
-          case 'code':
+    //       case 'code':
 
-            shape = element_options.load(my);
+    //         shape = element_options.load(my);
 
-            break;
-        }
+    //         break;
+    //     }
 
-        if ( shape ) {
-          my.playGround.addChild(shape);
-          my.playGround.update();
-        }
-      });
+    //     if ( shape ) {
+    //       my.playGround.addChild(shape);
+    //       my.playGround.update();
+    //     }
+    //   });
 
-    },
+    // },
 
-    // Create Game Path
-    buildWarriorsWay: function () {
-      this.options.warriorsWay.game = this;
-      this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
-    },
+    // // Create Game Path
+    // buildWarriorsWay: function () {
+    //   this.options.warriorsWay.game = this;
+    //   this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
+    // },
 
-    // Create Hero
-    buildCharacters: function () {
-      var my = this;
+    // // Create Hero
+    // buildCharacters: function () {
+    //   var my = this;
 
-      $.each( this.options.characters, function (index, character_options) {
+    //   $.each( this.options.characters, function (index, character_options) {
 
-        character_options.warriorsWay = my.warriorsWay;
+    //     character_options.warriorsWay = my.warriorsWay;
 
-        var character = new Character(character_options);
+    //     var character = new Character(character_options);
 
-        my.characters[character.unique_name] = character;
+    //     my.characters[character.unique_name] = character;
 
-        my.characters_map[character_options.type].push(character.unique_name);
-      });
+    //     my.characters_map[character_options.type].push(character.unique_name);
+    //   });
 
-    },
+    // },
 
-    attachControllers: function () {
-      var my = this;
+    // attachControllers: function () {
+    //   var my = this;
 
-      new Joystick({
-        move: function (track) {
-          my.characters[my.characters_map.hero[0]].step(track);
-        }
-      });
+    //   new Joystick({
+    //     move: function (track) {
+    //       my.characters[my.characters_map.hero[0]].step(track);
+    //     }
+    //   });
 
-    }
+    // }
 
 
   });
