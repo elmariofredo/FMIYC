@@ -1,4 +1,74 @@
 
+
+var GameElements = {
+
+  view_background: {
+    type: 'rectangle',
+    positions: [
+      {top: 0, left: 0}
+    ],
+    width: 'full',
+    height: 'full',
+    fill: 'linear-gradient(to bottom, rgba(89,165,135,1) 0%,rgba(82,155,158,1) 50%,rgba(86,139,155,1) 100%)'
+  },
+
+  border_top: {
+    type: 'line',
+    positions: [
+      {top: 0, left: 0},
+      {top: 0, right: 0}
+    ],
+    stroke: "9px #c1272d"
+  },
+
+  border_bottom: {
+    type: 'line',
+    positions: [
+      {bottom: 0, left: 0},
+      {bottom: 0, right: 0}
+    ],
+    stroke: "9px #c1272d"
+  }
+
+};
+
+var Levels = [
+  {
+    length: 700,
+    stack: 1
+  }
+];
+
+
+var warriorsWay = {
+  relative_to: 'view_background',
+  start: {
+    position: {
+      top: 'middle',
+      left: 170
+    },
+    sprite: {
+      image: 'Game/img/start.png',
+      generate: true,
+      width: 269,
+      height: 117
+    }
+  },
+  end: {
+    position: {
+      top: 'middle',
+      left: 0
+    },
+    sprite: {
+      image: 'Game/img/end.png',
+      generate: true,
+      width: 269,
+      height: 117
+    } 
+  }
+};
+
+
 // /**
 //  * Setup Enviroment
 //  * @type {Object}

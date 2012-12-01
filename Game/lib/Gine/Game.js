@@ -49,6 +49,9 @@
     },
     controllers: [],
     elements: {},
+    scenes: {},
+    levels: [],
+    current_level: null,
 
     init: function (options) {
       var my = this;
@@ -62,13 +65,28 @@
           height: 400
         },
         default_view: 'board',
-        playGround: {}
-      }
+        playGround: {},
+        elements: {},
+        scenes: [],
+        default_level: 0
+      };
 
       // Merge options
       $.extend( this.options, options || {} );
 
+      my.setLevels();
+
       my.setDimensions();
+    },
+
+
+    setLevels: function () {
+      var my = this;
+
+      my.levels = my.options.levels;
+
+      my.current_level = my.levels[my.options.default_level];
+
     },
 
 
@@ -89,7 +107,7 @@
         ( my.dimensions.display.size.height - my.dimensions.board.size.height ) / 2
       );
 
-      my.dimensions.board.corners = my.getElementCornerPosition('board')
+      my.dimensions.board.corners = my.getElementCornerPosition('board');
     },
 
     /**
@@ -105,28 +123,28 @@
         top_right: my.getRelativePosition(element, {top: 0, right: 0}),
         bottom_left: my.getRelativePosition(element, {bottom: 0, left: 0}),
         bottom_right: my.getRelativePosition(element, {bottom: 0, right: 0})
-      }
+      };
 
     },
     
     /**
-     *  Apply offset to the position for specified element
+     *  !DEPRECATED SOLVED BY OCANVAS! Apply offset to the position for specified element
      * @param  {String} element  Element where to correlate position to
      * @param  {Hash}   position Hash with top and left coordinates
      * @return {Hash}   position Hash with correlated top and left coordinates
      */
     getRelativePosition: function (element, position) {
       var my = this;
-      if ( element === undefined || !element ) { element = my.options.default_view }
+      if ( element === undefined || !element || my.dimensions[element] === undefined ) { element = my.options.default_view; }
 
       if ( position.top == 'middle' ) {
 
-        position.top = ( my.dimensions.display.size.height / 2 );
+        position.top = ( ( my.dimensions[element] || my.dimensions.display ).size.height / 2 );
 
       } else {
 
         // Add Bottom Coordinates Support
-        if ( position['bottom'] !== undefined )
+        if ( position.bottom !== undefined )
           position.top = ( my.dimensions[element].size.height - position.bottom );
  
         position.top += my.dimensions[element].offset.top;
@@ -136,24 +154,33 @@
 
 
       // Add Right Coordinates Support
-      if ( position['right'] !== undefined )
+      if ( position.right !== undefined )
         position.left = ( my.dimensions[element].size.width - position.right );
 
       position.left += my.dimensions[element].offset.left;
+
+      // For simplicity we return both top/left and y/x values
+      $.extend( position, {
+        y: position.top,
+        x: position.left
+      });
 
       return position;
     },
 
 
     // Render whole game
-    render: function () {
+    // TODO: let's use ocanvas modules instead
+    build: function () {
       var my = this;
 
-      my.buildPlayground();
+      my.buildPlayGround();  
 
-      // my.buildElements();
+      my.buildElements();
 
-      // my.buildWarriorsWay();
+      my.buildScenes();
+
+      my.buildWarriorsWay();
 
       // my.buildCharacters();
 
@@ -161,8 +188,12 @@
 
     },
 
+    load: function () {
+      this.playGround.canvas.scenes.load(this.options.defaultScene);
+    },
+
     // Create Stage - Canvas
-    buildPlayground: function () {
+    buildPlayGround: function () {
       var my = this;
 
       // TODO: make this by option
@@ -172,70 +203,109 @@
       // Add game reference
       my.options.playGround.game = my;
 
-      my.playGroundStage = new PlayGround( my.options.playGround );
-      my.playGround = my.playGroundStage.stage;
+      my.playGround = new PlayGround( my.options.playGround );
 
       window.playGround = my.playGround;
     },
 
-    // // Build static game elements
-    // buildElements: function () {
-    //   var my = this;
+    buildScenes: function ( ) {
+      var my = this;
 
-    //   $.each( my.options.elements, function ( index, element_options ) {
+      $.each( my.options.scenes, function ( name, elements ) {
 
-    //     var shape = null;
+        my.scenes[name] = my.playGround.canvas.scenes.create( name, function () {
+          var scene = this;
 
-    //     switch ( element_options.type ) {
-    //       case 'lineTo':
+          $.each( elements, function ( index, element ) {
+            scene.add(my.elements[element]);
+          });
+          
+        });
 
-    //         // Define Basic Stroke
-    //         var stroke = new createjs.Graphics().beginStroke( my.getColor( element_options.color ) );
+      });
 
-    //         // TODO: Add more style options
-    //         // Set Style
-    //         stroke.setStrokeStyle( element_options.style.thickness );
+    },
 
-    //         // Get Start Position
-    //         var current_path = element_options.path.shift();
+    // Build static game elements
+    buildElements: function () {
+      var my = this;
 
-    //         // Start Position
-    //         var position = my.getRelativePosition(element_options.relative_to, current_path);
-    //         // console.info(position)
-    //         stroke.moveTo( position.left, position.top );
+      $.each( my.options.elements, function ( index, element_options ) {
 
-    //         // Go to each path
-    //         $.each( element_options.path, function ( index, element_options_path ) {
-              
-    //           var position = my.getRelativePosition(element_options.relative_to, element_options_path);
-    //           stroke.lineTo( position.left, position.top );
+        var relative_to = ( element_options.relative_to || my.options.default_view );
 
-    //         });
+        var relative_positions = $.map( element_options.positions, function ( position ) {
+          return my.getRelativePosition( relative_to, position );
+        });
 
-    //         shape = new createjs.Shape( stroke.endStroke() );
+        if ( element_options.width !== undefined && element_options.width == 'full' )
+          element_options.width = my.dimensions[relative_to].size.width;
 
-    //         break;
+        if ( element_options.height !== undefined && element_options.height == 'full' )
+          element_options.height = my.dimensions[relative_to].size.height;
 
-    //       case 'code':
+        switch ( element_options.type ) {
+          case 'line':
 
-    //         shape = element_options.load(my);
+            my.elements[index] = my.playGround.display.line({
+              start: relative_positions[0],
+              end: relative_positions[1],
+              stroke: element_options.stroke
+            });
 
-    //         break;
-    //     }
+            break;
 
-    //     if ( shape ) {
-    //       my.playGround.addChild(shape);
-    //       my.playGround.update();
-    //     }
-    //   });
+          case 'rectangle':
 
-    // },
+            my.elements[index] = my.playGround.display.rectangle({
+              x: relative_positions[0].left,
+              y: relative_positions[0].top,
+              width: element_options.width,
+              height: element_options.height,
+              fill: element_options.fill
+            }); 
 
-    // // Create Game Path
-    // buildWarriorsWay: function () {
-    //   this.options.warriorsWay.game = this;
-    //   this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
-    // },
+            break;
+
+          case 'code':
+
+            my.elements[index] = element_options.load(my);
+
+            break;
+        }
+
+        my.dimensions[index] = {};
+
+        my.dimensions[index].size = {
+          width: my.elements[index].width,
+          height: my.elements[index].height
+        };
+
+        my.dimensions[index].offset = {
+          top: relative_positions[0].top,
+          left: relative_positions[0].left
+        };
+
+      });
+
+    },
+
+    // Create Game Path
+    buildWarriorsWay: function () {
+      this.options.warriorsWay.game = this;      
+      this.warriorsWay = new WarriorsWay( this.options.warriorsWay );
+
+      // ['start', 'end']
+      // var line = my.playGround.display.line({
+      //   start: { x: 80, y: 60 },
+      //   end: { x: 280, y: 170 },
+      //   stroke: "20px #0aa",
+      //   cap: "round"
+      // });
+
+
+      // my.elements['WarriorsWay']
+    },
 
     // // Create Hero
     // buildCharacters: function () {

@@ -1,7 +1,22 @@
 
 
 var FMIYC = new Game({
-  playGround: {}
+  elements: GameElements,
+  playGround: {
+    color: '#000'
+  },
+  scenes: {
+    game: [
+      'view_background',
+      'border_top',
+      'border_bottom'
+    ]
+  },
+  defaultScene: 'game',
+  levels: Levels,
+  warriorsWay: warriorsWay
 });
 
-FMIYC.render();
+FMIYC.build();
+
+FMIYC.load();
