@@ -43,12 +43,12 @@
       var my = this;
       
       this.playGround.onMouseMove = function(mouseEvent) {
-        // my.move(mouseEvent);
+        my.move(mouseEvent);
       }
 
       // For calibration purposes
       this.playGround.onMouseUp = function(mouseEvent) {
-        my.move(mouseEvent);
+        // my.move(mouseEvent);
       }
       
     },

@@ -43,6 +43,10 @@
     playGround: null,
     warriorsWay: null,
     characters: {},
+    characters_map: {
+      hero: [],
+      enemie: []
+    },
     controllers: [],
     elements: {},
 
@@ -123,12 +127,21 @@
       var my = this;
       if ( element === undefined || !element ) { element = my.options.default_view }
 
-      // Add Bottom Coordinates Support
-      if ( position['bottom'] !== undefined )
-        position.top = ( my.dimensions[element].size.height - position.bottom );
+      if ( position.top == 'middle' ) {
 
-      
-      position.top += my.dimensions[element].offset.top;
+        position.top = ( my.dimensions.display.size.height / 2 );
+
+      } else {
+
+        // Add Bottom Coordinates Support
+        if ( position['bottom'] !== undefined )
+          position.top = ( my.dimensions[element].size.height - position.bottom );
+ 
+        position.top += my.dimensions[element].offset.top;
+
+      }
+
+
 
       // Add Right Coordinates Support
       if ( position['right'] !== undefined )
@@ -167,13 +180,11 @@
 
       my.buildPlayground();
 
-
-
       my.buildElements();
 
       my.buildWarriorsWay();
 
-      // my.buildCharacters();
+      my.buildCharacters();
 
       my.attachControllers();
 
@@ -267,10 +278,13 @@
 
       $.each( this.options.characters, function (index, character_options) {
 
+        character_options.warriorsWay = my.warriorsWay;
+
         var character = new Character(character_options);
 
         my.characters[character.unique_name] = character;
 
+        my.characters_map[character_options.type].push(character.unique_name);
       });
 
     },
@@ -278,10 +292,10 @@
     attachControllers: function () {
       var my = this;
 
-      $.each( this.options.controllers, function (index, controller) {
-
-        my.controllers.push(new Joystick(controller));
-
+      new Joystick({
+        move: function (track) {
+          my.characters[my.characters_map.hero[0]].step(track);
+        }
       });
 
     }

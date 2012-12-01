@@ -1,15 +1,9 @@
 
 /**
  * Setup Enviroment
- * @type {Game}
+ * @type {Object}
  */
 var Game =  new Game({
-
-  // images: {
-  //   background: {
-  //     src: './App/img/gradient.png'
-  //   }
-  // },
 
   elements: {
 
@@ -88,8 +82,8 @@ var Game =  new Game({
     relative_to: 'board',
     start: {
       position:{
-        top: 237,
-        left: 400//140
+        top: 'middle',
+        left: 240
       },
       placement_offset: {
         top: 30,
@@ -102,8 +96,8 @@ var Game =  new Game({
     },
     end: {
       position:{
-        top: 237,
-        left: 800//1213
+        top: 'middle',
+        left: 2000
       },
       placement_offset: {
         top: 30,
@@ -119,41 +113,45 @@ var Game =  new Game({
         color: 'rgba(180, 44, 58, 1)',
         thickness: 58
       },
+      offset: {
+        top: 0,
+        left: 0
+      }
     },
 
 
-    // joins: {
-    //   sprite: {
-    //     images: ['./App/img/path.png'],
-    //     frames: {width: 166, height: 170}
-    //   },
-    //   kinds: {
-    //     'line': {
-    //       frame: 0,
-    //       placement_offset: {
-    //         top: 0,
-    //         left: 0
-    //       },
-    //       guide: {
-    //         // TODO
-    //       }
-    //     },
-    //     'up': {
-    //       frame: 1,
-    //       placement_offset: {
-    //         top: 0,
-    //         left: 0
-    //       }
-    //     },
-    //     'down': {
-    //       frame: 2,
-    //       placement_offset: {
-    //         top: 0,
-    //         left: 0
-    //       }
-    //     },
-    //   }
-    // }
+    joins: {
+      sprite: {
+        images: ['./App/img/path.png'],
+        frames: {width: 166, height: 170}
+      },
+      kinds: {
+        // 'line': {
+        //   frame: 0,
+        //   placement_offset: {
+        //     top: 0,
+        //     left: 0
+        //   },
+        //   guide: {
+        //     // TODO
+        //   }
+        // },
+        // 'up': {
+        //   frame: 1,
+        //   placement_offset: {
+        //     top: 0,
+        //     left: 0
+        //   }
+        // },
+        // 'down': {
+        //   frame: 2,
+        //   placement_offset: {
+        //     top: 0,
+        //     left: 0
+        //   }
+        // }
+      }
+    }
   },
 
 
@@ -162,7 +160,7 @@ var Game =  new Game({
     // Octocat
     {
       name: 'Octocat',
-      // position: path.base_elements['start']['placement'],
+      type: 'hero',
       sprite: {
         images: ['./App/img/hero_100x100.png'],
         frames: {width: 100, height: 100},
@@ -170,7 +168,7 @@ var Game =  new Game({
       },
       step: function (track) {
 
-        console.info(track, getWidth())
+        this.warriorsWay.move({left: -5});
 
         if ( this.animation !== undefined ) {
 
@@ -182,29 +180,18 @@ var Game =  new Game({
       }
     },
 
-    // Evil Clon
-    {
-      name: 'Clone',
-      // position: path.base_elements['end']['placement'], 
-      sprite: {
-        images: ['./App/img/clone_100x100.png'],
-        frames: {width: 100, height: 100},
-        animations: {always:[0,30]}
-      }
-    }
+    // // Evil Clon
+    // {
+    //   name: 'Clone',
+    //   // position: path.base_elements['end']['placement'], 
+    //   sprite: {
+    //     images: ['./App/img/clone_100x100.png'],
+    //     frames: {width: 100, height: 100},
+    //     animations: {always:[0,30]}
+    //   }
+    // }
 
   ],
-
-
-  controllers: [
-
-    {
-      move: function (track) {
-        // hero.step(track);
-      }
-    }
-
-  ]
 
 
 });

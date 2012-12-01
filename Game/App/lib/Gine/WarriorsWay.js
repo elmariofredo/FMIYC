@@ -12,11 +12,12 @@
   var WarriorsWay = Class.extend({
     base_elements: {},
     joins_sprite: [],
+    layers: [],
     init: function (options) {
       var my = this;
 
       // Default options
-      this.options = {        
+      my.options = {        
         id: uniq_id(),
         name: 'WarriorsWay',
         playGround: playGround,
@@ -28,12 +29,14 @@
       }
 
       // Merge options
-      $.extend( this.options, options || {} );
+      $.extend( my.options, options || {} );
 
-      this.playGround = this.options.playGround;
+      my.playGround = my.options.playGround;
+
+
 
       // Create/Load Canvas
-      this.load();
+      my.load();
     },
 
     // Load event on playGround
@@ -45,6 +48,8 @@
       my.build_base();
 
       my.build_base_path();
+
+      my.render();
     },
 
     parse_sprites: function () {
@@ -78,14 +83,14 @@
         my.base_elements[type] = {}
         my.base_elements[type]['options'] = my.options[type];
         my.base_elements[type]['sprite'] = new createjs.SpriteSheet(my.options[type].sprite);
-        my.base_elements[type]['sequence'] = new createjs.BitmapAnimation(my.base_elements[type]['sprite']);
+        my.base_elements[type]['shape'] = new createjs.BitmapAnimation(my.base_elements[type]['sprite']);
 
         // Open first frame
-        my.base_elements[type]['sequence'].gotoAndStop(1);
+        my.base_elements[type]['shape'].gotoAndStop(1);
 
         // Set position
-        my.base_elements[type]['sequence']['y'] = centerImage( my.options[type].position.top, my.options[type].sprite.frames.height );
-        my.base_elements[type]['sequence']['x'] = centerImage( my.options[type].position.left, my.options[type].sprite.frames.width );
+        my.base_elements[type]['shape']['y'] = centerImage( my.options[type].position.top, my.options[type].sprite.frames.height );
+        my.base_elements[type]['shape']['x'] = centerImage( my.options[type].position.left, my.options[type].sprite.frames.width );
 
         // Create Placement coordinates using offset
 
@@ -94,8 +99,8 @@
         else
           my.base_elements[type]['placement'] = my.options.default_placement_offset;
         
-        my.base_elements[type]['placement']['top'] += my.base_elements[type]['sequence']['y'];
-        my.base_elements[type]['placement']['left'] += my.base_elements[type]['sequence']['x'];
+        my.base_elements[type]['placement']['top'] += my.base_elements[type]['shape']['y'];
+        my.base_elements[type]['placement']['left'] += my.base_elements[type]['shape']['x'];
 
         my.base_elements[type]['border'] = {
           left: my.options[type].position.left,
@@ -104,13 +109,38 @@
 
 
         // Append Element to PlayGround
-        my.playGround.addChild( my.base_elements[type]['sequence'] );
+        my.add_to_layer(1, my.base_elements[type]['shape']);
+        
 
       });
 
-      // Update PlayGround
-      my.playGround.update();
+    },
 
+    /**
+     * Add Element to specific layer
+     * @param {Integer} layer   Layer number
+     * @param {Object} element  Element
+     */
+    add_to_layer: function ( layer, element ) {
+      var my = this;
+
+      if ( my.layers[layer] === undefined )
+        my.layers[layer] = [];
+
+      my.layers[layer].push(element)
+    },
+
+    // Render All Elemets
+    render: function () {
+      var my = this;
+
+      $.each(my.layers, function ( index, layer) {
+        $.each(layer, function ( index, element) {
+          my.playGround.addChild( element );
+        });
+      });
+
+      my.playGround.update();
     },
 
     get_scale_from_distance: function (object, start, end) {
@@ -121,71 +151,51 @@
     },
 
     build_base_path: function () {
-      var my = this;
+      var my = this;  
 
-      // Get line image
-      // var line = my.base_elements['line']['image'];
-
-      // line.scaleX = my.get_scale_from_distance( line, my.base_elements.start, my.base_elements.end );
-      
-      // line.y = 96;
-      // line.x = my.base_elements.start.border.right-136
-
-      // my.playGround.addChild( line );
-      
-      // ctx.beginPath();
-      // ctx.moveTo(0.0, 140.0);
-      // ctx.lineTo(1024.0, 140.0);
-      // ctx.lineWidth = 58.0;
-      // ctx.strokeStyle = "rgb(180, 44, 58)";
-      // ctx.stroke();
-      
-
-      var path = null;
+      var path;
       var from = 'start';
       var to = 'end';
 
-      // my.options.path.offset = {
-      //   top: ( my.options.path.style.thickness / 2 )
-      // }
+      my.options.path.offset = {
+        top: ( my.options.path.style.thickness / 2 )
+      }
 
       // Define Basic Stroke
       var stroke = new createjs.Graphics().beginStroke( my.options.path.style.color );
-      // var stroke = new createjs.Graphics().beginStroke( 'rgba(87, 151, 145, 1)' );
 
       // TODO: Add more style options
       // Set Style
-      console.info(my.options.path)
       stroke.setStrokeStyle( my.options.path.style.thickness );
-      // stroke.setStrokeStyle( 10 );
-
-      // Get Start Position
-      // var current_path = element_options.path.shift();
-
-      // Start Position
-      // var position = my.getRelativePosition(element_options.relative_to, current_path);
-      // console.info(position)
+  
       stroke.moveTo( my.base_elements[from]['placement'].left, my.base_elements[from]['placement'].top + my.options.path.offset.top );
-      // stroke.moveTo( 0, 0 );
-
-      // Go to each path
-      // $.each( element_options.path, function ( index, element_options_path ) {
-        
-      //   var position = my.getRelativePosition(element_options.relative_to, element_options_path);
-      //   stroke.lineTo( position.left, position.top );
-
-      // });
       
       stroke.lineTo( my.base_elements[to]['placement'].left, my.base_elements[to]['placement'].top + my.options.path.offset.top );
-      // stroke.lineTo( 0, 500 );
 
       path = new createjs.Shape( stroke.endStroke() );
 
-      console.info(path)
+      my.base_elements['base_path'] = {
+        shape: path
+      };
 
-      my.playGround.addChild(path);
+      my.add_to_layer(0, path);  
+    },
 
-      my.playGround.update();      
+    move: function ( relative_position ) {
+      var my = this;
+
+      $.each( my.base_elements, function( name, element ) {
+        // console.info(name, element, element.shape)
+        my.move_element( element.shape, relative_position );
+      });
+
+    },
+
+    move_element: function ( element, relative_position ) {
+
+      element.y += relative_position.top || 0;
+      element.x += relative_position.left || 0;
+
     }
 
   });

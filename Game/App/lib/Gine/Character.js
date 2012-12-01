@@ -45,6 +45,7 @@
       my.name = my.options.name;
       my.unique_name = my.unique_name();
       my.playGround = my.options.playGround;
+      my.warriorsWay = my.options.warriorsWay;
 
       // Create Image Element
       my.image = new Image();
@@ -87,7 +88,7 @@
       this.playGround.addChild(this.bitmap);
 
       // Set starting position
-      this.move(this.options.position);
+      this.start_position();
 
 
       // Update PlayGround
@@ -99,31 +100,43 @@
       this.image.src = this.options.src;
     },
 
+    // Go to start position
+    start_position: function () {
+      var my = this;
+
+      my.move(my.warriorsWay.base_elements.start.placement)
+    },
+
+    run: function () {
+      
+    },
+
     set_coordinates: function (position) {
-      // console.info(this, this.options, position)
+      var my = this;      
 
       // TODO: make it work also for non sprite images
-      this.x = centerImage(position.left, this.options.sprite.frames.width);
-      this.y = centerImage(position.top, this.options.sprite.frames.height);
+      my.x = centerImage(position.left, my.options.sprite.frames.width);
+      my.y = centerImage(position.top, my.options.sprite.frames.height);
     },
 
     move: function (position) {
+      var my = this;
       
-      this.set_coordinates(position);
+      my.set_coordinates(position);
 
-      if ( this.animation !== undefined ) {
+      if ( my.animation !== undefined ) {
 
-        this.animation.x = this.x;
-        this.animation.y = this.y;
+        my.animation.x = my.x;
+        my.animation.y = my.y;
 
       } else {
 
-        this.bitmap.x = this.x;
-        this.bitmap.y = this.y;
+        my.bitmap.x = my.x;
+        my.bitmap.y = my.y;
 
       }
 
-      this.playGround.update();
+      my.playGround.update();
     }
   });
 
