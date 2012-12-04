@@ -28,7 +28,7 @@
         v: null
       }
     },
-    step_trigger_delay: 30,
+    step_trigger_delay: 10,
     step_trigger_counter: 0,
     init: function (options) {
       var my = this;

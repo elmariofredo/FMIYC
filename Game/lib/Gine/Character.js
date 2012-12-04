@@ -91,6 +91,13 @@
       my.move(my.warriorsWay.elements.start.placement);
     },
 
+    // Go to start position
+    end_position: function () {
+      var my = this;
+
+      my.move(my.warriorsWay.elements.end.placement);
+    },
+
     // Render Character
     render: function () {
       var my = this;
@@ -99,6 +106,7 @@
 
     },
 
+    // TODO: Implement diagonal movements
     run: function () {
       
     },
@@ -109,17 +117,7 @@
       my.character.y = my.y = position.top;
       my.character.x = my.x = position.left;
 
-    },
-
-    // dimensions: function () {
-    //   var my = this;
-    //   return {
-    //     top: my.y,
-    //     left: my.x,
-    //     width: my.options.sprite.width,
-    //     height: my.options.sprite.height
-    //   };
-    // }
+    }
 
   });
 

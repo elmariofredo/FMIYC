@@ -330,56 +330,19 @@
       my.joystick = new Joystick(my.options.joystick);
     },
 
-    // To have elements under one hash
-    // TODO: we should use single hash for all game elements
-    // collectElements: function () {
-    //   var my = this;
-
-    //   oCanvas.extend( my.all_elements, my.warriorsWay.elements);
-    //   oCanvas.extend( my.all_elements, my.characters);
-
-    // },
-
     /**
      * Detect Collisions
      * @param  {Hash} border1 Coordinates and size
      * @param  {Hash} border2 Coordinates and size
      * @return {Boolean}      If colision is detected return true
      */
-    // collisionObjects: function (bjectA, objectB) {
+    collisionObjects: function (objectA, objectB) {
+      var my = this;
+      return my.rect_collision(objectA.x, objectA.y, objectA.height, objectB.x, objectB.y, objectB.height/5)
+    },  
 
-    //   /*
-    //     Detect space between
-    //       leftA & rightB
-    //       rightA & leftB
-    //       topA & bottomB
-    //       bottomA & topB
-    //     Credits: http://indiegamr.com/
-    //    */
-      
-    //   console.info(
-    //     bjectA.left >= objectB.left + objectB.width, 
-    //     bjectA.left + bjectA.width <= objectB.left,
-    //     bjectA.top >= objectB.top + objectB.height,
-    //     bjectA.top + bjectA.height <= objectB.top
-    //   );
-
-    //   console.info()
-
-
-    //   if ( 
-    //     bjectA.left >= objectB.left + objectB.width || 
-    //     bjectA.left + bjectA.width <= objectB.left || 
-    //     bjectA.top >= objectB.top + objectB.height  || 
-    //     bjectA.top + bjectA.height <= objectB.top   
-    //   ) 
-    //     return false;
-    //   // else
-    //     // return true;
-    // }
-    
-
-    rect_collision = function(x1, y1, size1, x2, y2, size2) {
+    // TODO: Create better colision detection
+    rect_collision: function(x1, y1, size1, x2, y2, size2) {
       var bottom1, bottom2, left1, left2, right1, right2, top1, top2;
       left1 = x1 - size1;
       right1 = x1 + size1;
@@ -390,7 +353,7 @@
       top2 = y2 - size2;
       bottom2 = y2 + size2;
       return !(left1 > right2 || left2 > right1 || top1 > bottom2 || top2 > bottom1);
-    };
+    }
 
 
   });

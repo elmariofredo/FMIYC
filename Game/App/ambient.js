@@ -80,6 +80,13 @@ var warriorsWay = {
       height: 117
     } 
   },
+  finish: {
+    name: 'finish',
+    position: {
+      top: 'middle',
+      left: 0
+    }
+  },
   path: {
     stroke: '60px rgba(180, 44, 58, 1)',
     placement_offset: {
@@ -90,15 +97,9 @@ var warriorsWay = {
   checkpoints: [
     {
       name: 'hero_finish',
-      object_names: ['Octocat', 'start_stand'],
+      object_names: ['Octocat', 'finish'],
       callback: function ( warriorWay, data ) {
-
-        
-        // if (!window.colision)
-          console.info('Colided!!!');
-        // alert('collided!!!');
-        // 
-        // window.colision = true
+        warriorWay.freeze();        
       }
     }
   ]
@@ -180,10 +181,7 @@ var JoystickOptions = {
         ]
       },
       trigger: function(joystick, event) {
-
-        // console.info(joystick.display.current_segment.v.data.go);
-        // console.info(joystick.display.current_segment.h.data.speed);
-
+       
         joystick.game.warriorsWay.roll({
           top: 0,
           left: ( joystick.display.current_segment.h.data.speed * -1 )

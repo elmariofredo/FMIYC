@@ -63,7 +63,8 @@
         checkpoint.objects = [];
 
         $.each( checkpoint.object_names, function( index, object_name ) {
-          checkpoint.objects.push(my.game.all_elements[object_name]);
+          var object = my.game.all_elements[object_name];
+          checkpoint.objects.push(object);
         });
 
         my.registered_checkpoints.push(checkpoint);
@@ -107,13 +108,21 @@
         my.game.all_elements[my.options[type].name] = my.elements[type].shape;
 
         my.elements[type].placement = {
-          // top: 0,
           top: ( my.options[type].position.top + my.options[type].placement_offset.top ),
-          // left: 0
           left: ( left + my.options[type].placement_offset.left )
         };
 
       });
+
+      // Finish
+      my.elements['finish'] = {};
+
+      my.elements['finish'].shape = my.game.playGround.display.rectangle({
+        y: my.options['finish'].position.top,
+        x: (my.elements['end'].shape.x + my.elements['end'].shape.width/2) - 25
+      });
+
+      my.game.all_elements['finish'] = my.elements['finish'].shape;
 
     },
 
@@ -146,11 +155,12 @@
  
     },
 
-    roll: function ( relative_position ) {
+    roll: function ( relative_position, force ) {
+      if ( force === undefined ) { force = false; }
       var my = this;
 
       // Using freeze for checkopints
-      if ( !my.freezed ) {
+      if ( force || !my.freezed ) {
 
         $.each( my.elements, function( name, element ) {
           my.move_element( element.shape, relative_position );
@@ -160,10 +170,14 @@
 
     },
 
+    // rollToEnd: function () {
+    //   var my = this;
+    //   my.x = element.x = ( this.elements['end'].x + this.elements['end'].width  * -1 );
+    //   my.game.playGround.stage.redraw();
+    // },
+
     move_element: function ( element, relative_position ) {
       var my = this;
-
-      // console.info(my)
 
       my.y = ( element.y += relative_position.top || 0 );
       my.x = ( element.x += relative_position.left || 0 );
@@ -188,6 +202,19 @@
         }
       });
 
+    },
+
+    freeze: function () {
+      var my = this;
+
+      if ( !my.freezed ) {
+        my.roll({
+          left: 0,
+          top: 0
+        }, true);
+      }
+
+      this.freezed = true;
     }
 
   });
